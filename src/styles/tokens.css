@@ -1,0 +1,117 @@
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-focus-ring: var(--focus-ring);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-danger: var(--danger);
+  --color-danger-foreground: var(--danger-foreground);
+
+  --radius-sm: calc(var(--radius) - 6px);
+  --radius-md: calc(var(--radius) - 3px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 6px);
+  --radius-2xl: calc(var(--radius) + 12px);
+
+  --shadow-elevation-1: var(--shadow-elevation-1);
+  --shadow-elevation-2: var(--shadow-elevation-2);
+  --shadow-elevation-3: var(--shadow-elevation-3);
+
+  --text-display: clamp(2.75rem, 7vw, 6.5rem);
+  --text-display--line-height: 0.94;
+  --text-display--letter-spacing: -0.065em;
+  --text-title: clamp(2rem, 4vw, 3.75rem);
+  --text-title--line-height: 1;
+  --text-title--letter-spacing: -0.05em;
+  --text-heading: clamp(1.5rem, 2.5vw, 2.25rem);
+  --text-heading--line-height: 1.08;
+  --text-heading--letter-spacing: -0.035em;
+  --text-kicker: 0.6875rem;
+  --text-kicker--line-height: 1.2;
+  --text-kicker--letter-spacing: 0.16em;
+
+  --spacing-page: clamp(1.25rem, 4vw, 4rem);
+  --spacing-section: clamp(5rem, 12vw, 10rem);
+  --spacing-section-tight: clamp(3.5rem, 8vw, 6rem);
+}
+
+:root {
+  --radius: 0.875rem;
+  --canvas: oklch(0.985 0.003 285);
+  --background: oklch(0.995 0.002 285);
+  --foreground: oklch(0.195 0.018 285);
+  --surface: oklch(1 0 0);
+  --surface-raised: oklch(1 0 0);
+  --surface-sunken: oklch(0.966 0.006 285);
+  --primary: oklch(0.515 0.22 280);
+  --primary-foreground: oklch(0.99 0.01 280);
+  --secondary: oklch(0.944 0.012 285);
+  --secondary-foreground: oklch(0.26 0.025 285);
+  --muted: oklch(0.95 0.008 285);
+  --muted-foreground: oklch(0.5 0.02 285);
+  --accent: oklch(0.92 0.04 280);
+  --accent-foreground: oklch(0.28 0.1 280);
+  --border: oklch(0.89 0.012 285);
+  --input: oklch(0.89 0.012 285);
+  --focus-ring: oklch(0.56 0.2 280);
+  --success: oklch(0.68 0.15 154);
+  --success-foreground: oklch(0.23 0.04 154);
+  --warning: oklch(0.78 0.15 82);
+  --warning-foreground: oklch(0.29 0.07 70);
+  --danger: oklch(0.61 0.2 25);
+  --danger-foreground: oklch(0.99 0.01 25);
+  --shadow-elevation-1:
+    0 1px 2px oklch(0.2 0.02 285 / 0.04), 0 3px 12px oklch(0.2 0.02 285 / 0.04);
+  --shadow-elevation-2:
+    0 8px 24px oklch(0.2 0.02 285 / 0.08), 0 2px 8px oklch(0.2 0.02 285 / 0.03);
+  --shadow-elevation-3:
+    0 20px 50px oklch(0.2 0.02 285 / 0.14), 0 8px 20px oklch(0.2 0.02 285 / 0.06);
+}
+
+.dark {
+  --canvas: oklch(0.145 0.015 285);
+  --background: oklch(0.165 0.016 285);
+  --foreground: oklch(0.94 0.01 285);
+  --surface: oklch(0.205 0.018 285);
+  --surface-raised: oklch(0.235 0.02 285);
+  --surface-sunken: oklch(0.13 0.014 285);
+  --primary: oklch(0.71 0.17 280);
+  --primary-foreground: oklch(0.19 0.03 280);
+  --secondary: oklch(0.26 0.02 285);
+  --secondary-foreground: oklch(0.91 0.012 285);
+  --muted: oklch(0.26 0.018 285);
+  --muted-foreground: oklch(0.7 0.02 285);
+  --accent: oklch(0.3 0.06 280);
+  --accent-foreground: oklch(0.89 0.05 280);
+  --border: oklch(0.31 0.018 285);
+  --input: oklch(0.31 0.018 285);
+  --focus-ring: oklch(0.72 0.16 280);
+  --success: oklch(0.74 0.14 154);
+  --success-foreground: oklch(0.19 0.035 154);
+  --warning: oklch(0.82 0.14 82);
+  --warning-foreground: oklch(0.24 0.06 70);
+  --danger: oklch(0.69 0.18 25);
+  --danger-foreground: oklch(0.25 0.04 25);
+  --shadow-elevation-1: 0 1px 2px oklch(0 0 0 / 0.2), 0 3px 12px oklch(0 0 0 / 0.12);
+  --shadow-elevation-2: 0 8px 24px oklch(0 0 0 / 0.26), 0 2px 8px oklch(0 0 0 / 0.14);
+  --shadow-elevation-3: 0 20px 50px oklch(0 0 0 / 0.38), 0 8px 20px oklch(0 0 0 / 0.2);
+}
