@@ -1,0 +1,34 @@
+
+> portfolio-foundation@0.1.0 build
+> node scripts/clean-next.mjs && next build --no-lint
+
+[clean-next] Cleaned Next build artifacts.
+ ΓÜá Linting is disabled.
+   Γû▓ Next.js 15.5.20
+
+   Creating an optimized production build ...
+ Γ£ô Compiled successfully in 35.0s
+   Checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/8) ...
+   Generating static pages (2/8) 
+   Generating static pages (4/8) 
+   Generating static pages (6/8) 
+ Γ£ô Generating static pages (8/8)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                 Size  First Load JS
+Γöî Γùï /                                      133 B         103 kB
+Γö£ Γùï /_not-found                            993 B         103 kB
+Γö£ Γùï /manifest.webmanifest                  133 B         103 kB
+Γö£ Γùï /robots.txt                            133 B         103 kB
+Γöö Γùï /sitemap.xml                           133 B         103 kB
++ First Load JS shared by all             102 kB
+  Γö£ chunks/255-3981a3d1f3561bd8.js       46.2 kB
+  Γö£ chunks/4bd1b696-c023c6e3521b1417.js  54.2 kB
+  Γöö other shared chunks (total)          1.96 kB
+
+
+Γùï  (Static)  prerendered as static content
+
