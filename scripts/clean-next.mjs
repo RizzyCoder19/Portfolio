@@ -27,4 +27,3 @@ rmrf(path.join(repoRoot, ".next"));
 rmrf(path.join(repoRoot, "out"));
 
 console.log("[clean-next] Cleaned Next build artifacts.");
-
