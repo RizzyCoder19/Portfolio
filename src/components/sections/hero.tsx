@@ -16,7 +16,7 @@ export function Hero() {
       aria-label="Introduction"
     >
       <div className="flex flex-col items-center gap-6 py-section">
-        <p className="text-kicker leading-[--text-kicker--line-height] font-bold tracking-[--text-kicker--letter-spacing] uppercase text-muted-foreground">
+        <p className="text-kicker leading-[--text-kicker--line-height] font-bold tracking-[--text-kicker--letter-spacing] text-muted-foreground uppercase">
           Portfolio
         </p>
         <h1 className="text-display leading-[--text-display--line-height] font-semibold tracking-[--text-display--letter-spacing] text-balance text-foreground">
