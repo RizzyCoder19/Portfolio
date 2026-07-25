@@ -28,9 +28,15 @@ export function ProjectCard({ project }: ProjectCardProps) {
       )}
     >
       <div className="flex aspect-[16/10] items-center justify-center rounded-t-xl border-b border-border bg-surface-sunken">
-        <span className="text-sm font-medium tracking-wide text-muted-foreground">
-          Project Preview
-        </span>
+        <div
+          className="size-full"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle, var(--color-border) 1px, transparent 1px)",
+            backgroundSize: "24px 24px",
+            opacity: 0.5,
+          }}
+        />
       </div>
       <div className="flex flex-col gap-4 p-6">
         <div className="flex items-start justify-between gap-4">
@@ -61,7 +67,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
             <Button variant="outline" size="sm" asChild>
               <a href={project.githubUrl}>GitHub</a>
             </Button>
-          ) : null}
+) : null}
         </div>
       </div>
     </article>

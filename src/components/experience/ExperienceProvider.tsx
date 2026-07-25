@@ -1,9 +1,7 @@
 "use client";
 
-import { useReducedMotion, motion } from "motion/react";
 import { useCallback, useState, type ReactNode } from "react";
 
-import { createStagger } from "@/lib/motion";
 import { IntroScreen } from "./IntroScreen";
 
 interface ExperienceProviderProps {
@@ -11,7 +9,6 @@ interface ExperienceProviderProps {
 }
 
 export function ExperienceProvider({ children }: ExperienceProviderProps) {
-  const shouldReduceMotion = useReducedMotion();
   const [introComplete, setIntroComplete] = useState(false);
 
   const handleIntroComplete = useCallback(() => {
@@ -31,18 +28,7 @@ export function ExperienceProvider({ children }: ExperienceProviderProps) {
     );
   }
 
-  // After intro: stagger reveal of sections
-  if (shouldReduceMotion) {
-    return <>{children}</>;
-  }
-
-  return (
-    <motion.div
-      initial="hidden"
-      animate="visible"
-      variants={createStagger(0.12)}
-    >
-      {children}
-    </motion.div>
-  );
+  // After intro: render children directly. Hero handles its own stagger
+  // and other sections should not receive a global stagger from here.
+  return <>{children}</>;
 }

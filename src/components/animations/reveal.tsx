@@ -13,7 +13,7 @@ type RevealProps = HTMLMotionProps<"div"> & {
 export function Reveal({
   delay = 0,
   blur = false,
-  distance = 40,
+  distance = 10,
   ...props
 }: RevealProps) {
   const shouldReduceMotion = useReducedMotion();
