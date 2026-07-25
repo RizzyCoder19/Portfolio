@@ -4,14 +4,17 @@ import { useReducedMotion } from "motion/react";
 import { useEffect, useState } from "react";
 
 import {
-  introBeamDelay,
-  introBeamFadeDuration,
-  introLine1Delay,
-  introLine2Delay,
-  introPause,
-  introReadDuration,
+  introBeamBrightenDelayFromStart,
+  introBeamFadeDelay,
+  introBeamGrowDelay,
+  introBeamGrowDuration,
+  introDoneDelay,
+  introFinalPause,
+  introHoldDelay,
+  introLine1FadeDelay,
+  introLine2FadeDelay,
   introStatement,
-  introTextFadeDuration,
+  introTextFadeDelay,
 } from "@/content/experience";
 
 const introLines = introStatement.split("\n");
@@ -20,12 +23,14 @@ const line2 = introLines[1] ?? "";
 
 type Phase =
   | "black"
-  | "beam"
+  | "beam-grow"
+  | "beam-rest"
   | "line1"
+  | "beam-brighten"
   | "line2"
-  | "read"
-  | "fade-text"
-  | "fade-beam"
+  | "hold"
+  | "beam-fade"
+  | "text-fade"
   | "pause"
   | "done";
 
@@ -36,9 +41,6 @@ interface IntroScreenProps {
 export function IntroScreen({ onComplete }: IntroScreenProps) {
   const shouldReduceMotion = useReducedMotion();
   const [phase, setPhase] = useState<Phase>(shouldReduceMotion ? "done" : "black");
-  const [textPhase, setTextPhase] = useState<
-    "hidden" | "line1" | "line2" | "fade-text"
-  >(shouldReduceMotion ? "fade-text" : "hidden");
 
   useEffect(() => {
     if (shouldReduceMotion) {
@@ -46,97 +48,112 @@ export function IntroScreen({ onComplete }: IntroScreenProps) {
       return;
     }
 
-    const beamTimer = setTimeout(() => setPhase("beam"), introBeamDelay);
-
-    // Text sequencing: first line, second line, then fade
-    const line1Timer = setTimeout(() => setTextPhase("line1"), introLine1Delay);
-    const line2Timer = setTimeout(() => setTextPhase("line2"), introLine2Delay);
-    const fadeTextTimer = setTimeout(
-      () => setTextPhase("fade-text"),
-      introLine2Delay + introReadDuration,
+    const growTimer = setTimeout(() => setPhase("beam-grow"), introBeamGrowDelay);
+    const restTimer = setTimeout(
+      () => setPhase("beam-rest"),
+      introBeamGrowDelay + introBeamGrowDuration,
     );
-
-    // Beam fade follows text fade
-    const fadeBeamTimer = setTimeout(
-      () => setPhase("fade-beam"),
-      introLine2Delay + introReadDuration + introTextFadeDuration,
+    const line1Timer = setTimeout(() => setPhase("line1"), introLine1FadeDelay);
+    const brightenTimer = setTimeout(
+      () => setPhase("beam-brighten"),
+      introBeamBrightenDelayFromStart,
     );
-
+    const line2Timer = setTimeout(() => setPhase("line2"), introLine2FadeDelay);
+    const holdTimer = setTimeout(() => setPhase("hold"), introHoldDelay);
+    const beamFadeTimer = setTimeout(() => setPhase("beam-fade"), introBeamFadeDelay);
+    const textFadeTimer = setTimeout(() => setPhase("text-fade"), introTextFadeDelay);
     const pauseTimer = setTimeout(
       () => setPhase("pause"),
-      introLine2Delay + introReadDuration + introTextFadeDuration + introBeamFadeDuration,
+      introDoneDelay - introFinalPause,
     );
-
-    const doneTimer = setTimeout(
-      () => {
-        setPhase("done");
-        onComplete();
-      },
-      introLine2Delay +
-        introReadDuration +
-        introTextFadeDuration +
-        introBeamFadeDuration +
-        introPause,
-    );
+    const doneTimer = setTimeout(() => {
+      setPhase("done");
+      onComplete();
+    }, introDoneDelay);
 
     return () => {
-      clearTimeout(beamTimer);
+      clearTimeout(growTimer);
+      clearTimeout(restTimer);
       clearTimeout(line1Timer);
+      clearTimeout(brightenTimer);
       clearTimeout(line2Timer);
-      clearTimeout(fadeTextTimer);
-      clearTimeout(fadeBeamTimer);
+      clearTimeout(holdTimer);
+      clearTimeout(beamFadeTimer);
+      clearTimeout(textFadeTimer);
       clearTimeout(pauseTimer);
       clearTimeout(doneTimer);
     };
   }, [shouldReduceMotion, onComplete]);
 
-  if (phase === "done") return null;
+  if (phase === "done") {
+    return null;
+  }
 
+  const beamGrown = phase !== "black";
   const beamVisible =
-    phase !== "black" && phase !== "fade-beam" && phase !== "pause";
-
-  const line1Visible = textPhase === "line1" || textPhase === "line2";
-  const line2Visible = textPhase === "line2";
-  const textFading = textPhase === "fade-text";
+    phase !== "beam-fade" && phase !== "text-fade" && phase !== "pause";
+  const beamBright =
+    phase === "beam-brighten" || phase === "line2" || phase === "hold";
+  const line1Visible =
+    phase === "line1" ||
+    phase === "beam-brighten" ||
+    phase === "line2" ||
+    phase === "hold";
+  const line2Visible = phase === "line2" || phase === "hold";
+  const textHidden = phase === "text-fade" || phase === "pause";
 
   return (
     <div
       className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black"
       aria-hidden="true"
     >
-      {/* Beam */}
       <div
         className="absolute inset-0 flex items-center justify-center"
         style={{
-          opacity: beamVisible ? 1 : 0,
-          transition: `opacity ${introBeamFadeDuration}ms ease-out`,
+          opacity: beamGrown && beamVisible ? 1 : 0,
+          transition: "opacity 400ms ease-out",
         }}
       >
         <div
-          className="h-full w-px"
+          className="h-px w-[60vw] max-w-md"
           style={{
-            background:
-              "linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.15) 50%, transparent 100%)",
+            transformOrigin: "center center",
+            transform: beamGrown ? "scaleX(1)" : "scaleX(0)",
+            background: beamBright
+              ? "rgba(255,255,255,0.25)"
+              : "rgba(255,255,255,0.12)",
+            transitionProperty: "transform, background-color, opacity",
+            transitionDuration: "700ms, 300ms, 400ms",
+            transitionTimingFunction:
+              "cubic-bezier(0.22, 1, 0.36, 1), ease-out, ease-out",
+            filter: "blur(0.5px)",
           }}
         />
       </div>
 
-      {/* Statement - two independent lines */}
-      <div className="relative z-10 flex flex-col items-center gap-1 sm:gap-2">
+      <div className="relative z-10 flex flex-col items-center gap-3">
         <span
-          className="text-sm font-light tracking-[0.2em] text-white/70 uppercase sm:text-base"
+          className="text-sm font-light tracking-[0.2em] text-white/80 uppercase sm:text-base"
           style={{
-            opacity: textFading ? 0 : line1Visible ? 1 : 0,
-            transition: `opacity ${introTextFadeDuration}ms ease-out`,
+            opacity: textHidden
+              ? 0
+              : line1Visible || line2Visible
+                ? 6
+                : 0,
+            transition: "opacity 500ms ease-out",
           }}
         >
           {line1}
         </span>
         <span
-          className="text-sm font-light tracking-[0.2em] text-white/70 uppercase sm:text-base"
+          className="text-sm font-light tracking-[0.2em] text-white/80 uppercase sm:text-base"
           style={{
-            opacity: textFading ? 0 : line2Visible ? 1 : 0,
-            transition: `opacity ${introTextFadeDuration}ms ease-out`,
+            opacity: textHidden
+              ? 0
+              : line2Visible
+                ? 1
+                : 0,
+            transition: "opacity 500ms ease-out",
           }}
         >
           {line2}
