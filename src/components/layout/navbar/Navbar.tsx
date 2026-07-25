@@ -7,19 +7,9 @@ import { cn } from "@/lib/utils";
 import { useScrollTo } from "@/utils/scroll";
 
 import { NavbarItem } from "./NavbarItem";
+import { navLinks } from "@/content/navigation";
 
-interface NavLink {
-  label: string;
-  sectionId: string;
-}
-
-const NAV_LINKS: NavLink[] = [
-  { label: "Home", sectionId: "hero" },
-  { label: "About", sectionId: "about" },
-  { label: "Work", sectionId: "work" },
-  { label: "Experiments", sectionId: "experiments" },
-  { label: "Contact", sectionId: "contact" },
-];
+const NAV_LINKS = [...navLinks];
 
 export function Navbar() {
   const [activeSection, setActiveSection] = useState("hero");

@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { useScrollTo } from "@/utils/scroll";
+import { heroCtaLabels } from "@/content/hero";
 
 export function HeroActions() {
   const scrollTo = useScrollTo();
@@ -13,16 +14,15 @@ export function HeroActions() {
         size="lg"
         onClick={() => scrollTo("#work", { offset: 0 })}
       >
-        View Work
+        {heroCtaLabels[0]}
       </Button>
       <Button
         variant="outline"
         size="lg"
         onClick={() => scrollTo("#contact", { offset: 0 })}
       >
-        Get in Touch
+        {heroCtaLabels[1]}
       </Button>
     </div>
   );
 }
-

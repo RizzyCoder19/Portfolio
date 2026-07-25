@@ -1,5 +1,6 @@
 import { Heading } from "@/components/ui/heading";
 import { cn } from "@/lib/utils";
+import { heroEyebrow, heroName, heroStatement, heroDescription } from "@/content/hero";
 
 export function HeroContent() {
   return (
@@ -12,7 +13,7 @@ export function HeroContent() {
           "text-muted-foreground uppercase",
         )}
       >
-        Data Science &bull; Software Engineering
+        {heroEyebrow}
       </p>
 
       {/* Name */}
@@ -21,7 +22,7 @@ export function HeroContent() {
         size="display"
         className="text-balance text-center"
       >
-        Khan Umar
+        {heroName}
       </Heading>
 
       {/* Primary statement */}
@@ -33,7 +34,7 @@ export function HeroContent() {
           "max-w-3xl",
         )}
       >
-        Building thoughtful software and digital experiences.
+        {heroStatement}
       </p>
 
       {/* Supporting paragraph */}
@@ -44,11 +45,8 @@ export function HeroContent() {
           "max-w-2xl",
         )}
       >
-        I&apos;m a B.Sc. Data Science undergraduate passionate about software
-        engineering, AI, and designing products that feel fast, intuitive, and
-        purposeful.
+        {heroDescription}
       </p>
     </div>
   );
 }
-

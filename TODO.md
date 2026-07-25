@@ -1,16 +1,13 @@
-# Sprint 4A — Global Section Reveal System
+# Sprint 3 — Content Layer Refactoring
 
 ## Steps
 
-- [ ] Update `src/config/animation.ts` — Add reveal duration and easeOutCubic
-- [ ] Update `src/lib/motion.ts` — Add createRevealVariants function with blur/distance support
-- [ ] Refactor `src/components/animations/reveal.tsx` — Configurable delay, blur, distance props
-- [ ] Apply Reveal to `src/components/sections/about/AboutContent.tsx` — Individual elements
-- [ ] Apply Reveal to `src/components/sections/about/AboutPortrait.tsx`
-- [ ] Apply Reveal to `src/components/sections/about/AboutSkills.tsx`
-- [ ] Apply Reveal to `src/components/sections/about/AboutFocus.tsx`
-- [ ] Apply Reveal to `src/components/sections/work.tsx`
-- [ ] Apply Reveal to `src/components/sections/experiments.tsx`
-- [ ] Apply Reveal to `src/components/sections/contact.tsx`
+- [x] Create domain-specific content files: `navigation.ts`, `hero.ts`, `about.ts`, `work.ts`
+- [x] Refactor `Navbar.tsx` — import `navLinks` from `@/content/navigation`
+- [x] Refactor `HeroContent.tsx` — import text from `@/content/hero`
+- [x] Refactor `HeroActions.tsx` — import CTAs from `@/content/hero`
+- [x] Refactor `WorkHeader.tsx` — import text from `@/content/work`
+- [x] Refactor `WorkGrid.tsx` — import `projects` from `@/content/work`
+- [x] Refactor `AboutContent.tsx` — import text from `@/content/about`
+- [x] Refactor `AboutHighlights.tsx` — import `highlights` from `@/content/about`
 - [ ] Run lint, typecheck, build
-
