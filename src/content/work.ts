@@ -5,9 +5,9 @@ export { projects };
 export const workEyebrow = "Work" as const;
 
 export const workHeadingLines: readonly string[] = [
-  "Selected projects",
-  "I've built recently.",
+  "Projects I'm",
+  "building right now.",
 ] as const;
 
 export const workDescription =
-  "A curated selection of projects that explore the intersection of software engineering, design, and thoughtful problem-solving." as const;
+  "This section will grow as I finish and publish more work. For now, it reflects where I am\u2014actively building, learning, and iterating." as const;

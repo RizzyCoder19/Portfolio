@@ -3,7 +3,7 @@ import { highlights } from "@/content/about";
 
 export function AboutHighlights() {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
       {[...highlights].map((item) => (
         <article
           key={item.title}
@@ -13,7 +13,7 @@ export function AboutHighlights() {
             "hover:border-foreground/15 hover:bg-surface-raised",
           )}
         >
-          <h3 className="font-semibold text-foreground mb-2">{item.title}</h3>
+          <h3 className="mb-2 font-semibold text-foreground">{item.title}</h3>
           <p className="text-sm leading-relaxed text-muted-foreground">
             {item.description}
           </p>

@@ -21,7 +21,7 @@ export function AboutContent() {
         ))}
       </Heading>
 
-      <div className="flex flex-col gap-5 max-w-prose text-muted-foreground">
+      <div className="flex max-w-prose flex-col gap-5 text-muted-foreground">
         {aboutParagraphs.map((paragraph, i) => (
           <p key={i} className="text-base leading-7 sm:text-lg">
             {paragraph}
@@ -29,7 +29,7 @@ export function AboutContent() {
         ))}
       </div>
 
-      <p className="text-base leading-7 sm:text-lg text-foreground max-w-prose">
+      <p className="max-w-prose text-base leading-7 text-foreground sm:text-lg">
         {aboutEmphasis}
       </p>
     </div>

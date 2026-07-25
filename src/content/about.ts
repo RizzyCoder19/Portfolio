@@ -10,9 +10,9 @@ export const aboutHeadingLines: readonly string[] = [
 ] as const;
 
 export const aboutParagraphs: readonly string[] = [
-  "I'm currently pursuing a Bachelor's degree in Data Science while exploring the intersection of software engineering, AI, and thoughtful product design.",
-  "I enjoy turning ideas into polished digital experiences that are fast, intuitive, and purposeful. Whether I'm building responsive websites, experimenting with AI-assisted workflows, or refining user interfaces, I'm always focused on creating software that people genuinely enjoy using.",
+  "I started building things on the web because I wanted to make useful tools that people actually enjoy using. That curiosity led me to pursue a B.Sc. in Data Science, where I spend my time between algorithms, databases, and finding better ways to build software.",
+  "Right now, I'm focused on frontend engineering with React and TypeScript, digging deeper into Python for data work, and exploring how AI tools can speed up development without replacing the craft. I care about clean interfaces, responsive layouts, and code that holds up under pressure.",
 ] as const;
 
 export const aboutEmphasis =
-  "I believe good software isn't just functional\u2014it should feel effortless." as const;
+  "Good software should feel effortless. That\u2019s the benchmark I build toward." as const;

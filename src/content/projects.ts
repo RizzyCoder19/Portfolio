@@ -2,41 +2,39 @@ import type { Project } from "@/components/sections/work/ProjectCard";
 
 export const projects: readonly Project[] = [
   {
-    title: "AI Resume Analyzer",
+    title: "Coming Soon",
     description:
-      "Built with Python and NLP to automatically score and rank resumes against job descriptions.",
-    tech: ["Python", "SQL", "React", "TypeScript"],
-    status: "featured",
-    statusLabel: "Featured",
-    githubUrl: "#",
-    caseStudyUrl: "#",
-  },
-  {
-    title: "Personal Portfolio",
-    description:
-      "A modern, minimal portfolio built with Next.js, TypeScript, and Tailwind CSS.",
-    tech: ["Next.js", "TypeScript", "Tailwind CSS"],
-    status: "completed",
-    statusLabel: "Completed",
-    githubUrl: "#",
-  },
-  {
-    title: "Healthcare Dashboard",
-    description:
-      "Interactive dashboard for visualizing patient data and healthcare analytics.",
-    tech: ["React", "Node.js", "TypeScript", "SQL"],
-    status: "completed",
-    statusLabel: "Completed",
-    githubUrl: "#",
-  },
-  {
-    title: "Realtime Chat",
-    description:
-      "Full-stack realtime messaging application with WebSocket support.",
-    tech: ["Node.js", "React", "Git", "Python"],
+      "A project I'm actively building. Details will be shared here once it reaches a solid milestone.",
+    tech: [],
     status: "progress",
     statusLabel: "In Progress",
     githubUrl: "#",
-    caseStudyUrl: "#",
+  },
+  {
+    title: "Coming Soon",
+    description:
+      "Another project in the works. I believe in shipping things that are ready, not rushing incomplete work.",
+    tech: [],
+    status: "progress",
+    statusLabel: "In Progress",
+    githubUrl: "#",
+  },
+  {
+    title: "Coming Soon",
+    description:
+      "Planned and scoped. This space will be updated as I build and refine more public work.",
+    tech: [],
+    status: "progress",
+    statusLabel: "In Progress",
+    githubUrl: "#",
+  },
+  {
+    title: "Coming Soon",
+    description:
+      "Still exploring ideas. Great software starts with a clear vision\u2014I\u2019m taking the time to get it right.",
+    tech: [],
+    status: "progress",
+    statusLabel: "In Progress",
+    githubUrl: "#",
   },
 ] as const;

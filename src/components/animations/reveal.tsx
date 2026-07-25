@@ -24,9 +24,7 @@ export function Reveal({
       whileInView="visible"
       viewport={{ amount: 0.2, once: true }}
       variants={
-        shouldReduceMotion
-          ? undefined
-          : createRevealVariants({ distance, blur })
+        shouldReduceMotion ? undefined : createRevealVariants({ distance, blur })
       }
       transition={{ delay }}
       {...props}

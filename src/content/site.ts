@@ -15,7 +15,10 @@ export const sectionLabels: Record<string, string> = {
   contact: "Contact",
 } as const;
 
-export const sectionHeadings: Record<string, { eyebrow: string; title: string; description: string }> = {
+export const sectionHeadings: Record<
+  string,
+  { eyebrow: string; title: string; description: string }
+> = {
   experiments: {
     eyebrow: "Experiments",
     title: "Experiments Section",

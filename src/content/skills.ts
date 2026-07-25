@@ -5,23 +5,23 @@ export interface Highlight {
 
 export const highlights: readonly Highlight[] = [
   {
-    title: "Building",
+    title: "Frontend",
     description:
-      "Responsive web applications with modern frontend technologies.",
+      "Building responsive interfaces with React, Next.js, and Tailwind. Focused on performance and thoughtful interaction design.",
   },
   {
-    title: "AI",
+    title: "Data",
     description:
-      "Using AI as a development accelerator, not a replacement for engineering.",
+      "Working through Python, SQL, and data structures to turn raw information into something useful.",
   },
   {
-    title: "Learning",
+    title: "AI-assisted",
     description:
-      "Continuously improving in Python, SQL, Data Structures and software architecture.",
+      "Using AI tools to accelerate development\u2014not as a crutch, but as a force multiplier for engineering decisions.",
   },
   {
-    title: "Mindset",
+    title: "Craft",
     description:
-      "Curious, disciplined and always focused on building better products.",
+      "Curious about the details that separate functional software from software people actually want to use.",
   },
 ] as const;

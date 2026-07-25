@@ -22,11 +22,13 @@ export type StatusBadgeProps = VariantProps<typeof statusBadgeVariants> & {
   label: string;
 };
 
-export function StatusBadge({ label, variant, className }: StatusBadgeProps & { className?: string }) {
+export function StatusBadge({
+  label,
+  variant,
+  className,
+}: StatusBadgeProps & { className?: string }) {
   return (
-    <span className={cn(statusBadgeVariants({ variant }), className)}>
-      {label}
-    </span>
+    <span className={cn(statusBadgeVariants({ variant }), className)}>{label}</span>
   );
 }
 

@@ -17,11 +17,7 @@ export function HeroContent() {
       </p>
 
       {/* Name */}
-      <Heading
-        as="h1"
-        size="display"
-        className="text-balance text-center"
-      >
+      <Heading as="h1" size="display" className="text-center text-balance">
         {heroName}
       </Heading>
 
@@ -30,7 +26,7 @@ export function HeroContent() {
         className={cn(
           "text-title leading-[--text-title--line-height]",
           "font-semibold tracking-[--text-title--letter-spacing]",
-          "text-balance text-center text-foreground",
+          "text-center text-balance text-foreground",
           "max-w-3xl",
         )}
       >
@@ -41,7 +37,7 @@ export function HeroContent() {
       <p
         className={cn(
           "text-heading leading-[1.08] font-normal tracking-[-0.035em]",
-          "text-balance text-center text-muted-foreground",
+          "text-center text-balance text-muted-foreground",
           "max-w-2xl",
         )}
       >

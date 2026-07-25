@@ -19,11 +19,11 @@ If the recruiter remembers a visual effect more than they remember the developer
 
 ### Core Principles
 
-| Principle | Meaning |
-|---|---|
-| **Premium** | Feels expensive without being ostentatious. Generous whitespace, refined typography, deliberate pacing. |
-| **Restrained** | Every element earns its place. No decorative flourishes that lack purpose. Motion supports comprehension, not spectacle. |
-| **Intentional** | Nothing is accidental. Scroll speed, hover response, color transitions — all tuned to a unified rhythm. |
+| Principle        | Meaning                                                                                                                     |
+| ---------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| **Premium**      | Feels expensive without being ostentatious. Generous whitespace, refined typography, deliberate pacing.                     |
+| **Restrained**   | Every element earns its place. No decorative flourishes that lack purpose. Motion supports comprehension, not spectacle.    |
+| **Intentional**  | Nothing is accidental. Scroll speed, hover response, color transitions — all tuned to a unified rhythm.                     |
 | **Long-lasting** | The aesthetic is current but avoids trends that will date it. It should look as appropriate in five years as it does today. |
 
 ---
@@ -46,7 +46,7 @@ Duration: approximately **900ms** after the page is interactive. This duration i
 
 2. **A vertical beam of light.** A single thin vertical line — 1px wide, white or near-white, approximately 60% of the viewport height — appears at the horizontal centre of the screen. It materialises not by fading but by drawing itself from top to bottom over 500ms. The beam is not animated with glitter or glow — it is clean, precise, and still.
 
-3. **A statement appears.** At the midpoint of the beam (approximately 45% from the top), a single short line of type appears. This is not a name or a role. It is a **statement of belief** — the idea the portfolio stands for. Examples of the *type* of statement (not final copy): "Thoughtful systems." or "Clarity over complexity." or "Crafted with intent." The statement appears by fading to full opacity over 400ms. No movement. No typing effect.
+3. **A statement appears.** At the midpoint of the beam (approximately 45% from the top), a single short line of type appears. This is not a name or a role. It is a **statement of belief** — the idea the portfolio stands for. Examples of the _type_ of statement (not final copy): "Thoughtful systems." or "Clarity over complexity." or "Crafted with intent." The statement appears by fading to full opacity over 400ms. No movement. No typing effect.
 
 4. **A pause.** The statement and the beam hold together for approximately 600ms. The user reads the statement without distraction.
 
@@ -63,7 +63,7 @@ Approximately 2.5 seconds from first paint to full Hero. This is not skippable b
 ### Why This Works
 
 - The vertical beam is architectural. It evokes a column, a plumb line, a measure of precision. It does not imitate cinema or gaming.
-- The statement-first structure ensures the visitor encounters an *idea* before they encounter a *person*. This positions the portfolio as a perspective, not a résumé.
+- The statement-first structure ensures the visitor encounters an _idea_ before they encounter a _person_. This positions the portfolio as a perspective, not a résumé.
 - The absence of movement during the statement forces the user to read. The pause after the statement lets the words settle.
 
 ### Accessibility
@@ -105,7 +105,7 @@ Under `prefers-reduced-motion: reduce`:
 The Hero communicates an idea before it introduces a person. The hierarchy is:
 
 1. **A belief.** The Hero's most prominent element is a short statement of philosophy or intent. This is not marketing copy and not a role title. It is the principle that defines the work. It sits alone, centred, using the `--text-display` token at equilibrium weight.
-2. **The person.** Below the belief, with noticeably less visual weight, is the name and a brief descriptor (role or discipline). This is supporting information — it tells the visitor *who* holds the belief expressed above.
+2. **The person.** Below the belief, with noticeably less visual weight, is the name and a brief descriptor (role or discipline). This is supporting information — it tells the visitor _who_ holds the belief expressed above.
 3. **Actions.** Two CTAs: the primary action (view the work that embodies this belief) and a secondary action (contact).
 
 The hierarchy is expressed through type scale alone. No color changes, no decorative separation, no icons. The typography carries the entire burden of prioritisation.
@@ -115,6 +115,7 @@ The hierarchy is expressed through type scale alone. No color changes, no decora
 The Hero should first assert a point of view. Only after that point of view is registered should the visitor learn the name behind it. This inverts the typical portfolio pattern (name → role → tagline) and signals that the work is driven by philosophy, not self-promotion.
 
 The belief statement must be:
+
 - **Short.** 2–5 words.
 - **Specific.** It should be true only of this portfolio, not interchangeable with any other creative's site.
 - **Enduring.** It should not reference trends, technologies, or cultural moments that will date it.
@@ -157,22 +158,22 @@ Motion exists to support comprehension, not to decorate. A user should never thi
 
 All motion uses custom cubic-bezier curves derived from `src/config/animation.ts`. Deceleration (ease-out) is the default — elements should appear to arrive, not depart. No linear or ease-in motion.
 
-| Name | Curve | Character |
-|---|---|---|
-| `power1.out` | `cubic-bezier(0.16, 1, 0.3, 1)` | Snappy deceleration for micro-interactions (hover, tap). |
-| `power2.out` | `cubic-bezier(0.22, 1, 0.36, 1)` | Standard deceleration for most scroll-triggered reveals. |
-| `power3.out` | `cubic-bezier(0.25, 1, 0.5, 1)` | Languid deceleration for the cinematic opening. |
+| Name           | Curve                            | Character                                                  |
+| -------------- | -------------------------------- | ---------------------------------------------------------- |
+| `power1.out`   | `cubic-bezier(0.16, 1, 0.3, 1)`  | Snappy deceleration for micro-interactions (hover, tap).   |
+| `power2.out`   | `cubic-bezier(0.22, 1, 0.36, 1)` | Standard deceleration for most scroll-triggered reveals.   |
+| `power3.out`   | `cubic-bezier(0.25, 1, 0.5, 1)`  | Languid deceleration for the cinematic opening.            |
 | `power1.inOut` | `cubic-bezier(0.76, 0, 0.24, 1)` | Symmetrical ease for transitions that both enter and exit. |
 
 ### Durations
 
-| Context | Duration (ms) |
-|---|---|
-| Micro-interaction (hover, tap feedback) | 200–300 |
-| Scroll-triggered reveal | 600–800 |
-| Staggered group reveal (per child) | 80–150 |
-| Cinematic intro (per phase) | 400–600 |
-| Page transition | 400–500 |
+| Context                                 | Duration (ms) |
+| --------------------------------------- | ------------- |
+| Micro-interaction (hover, tap feedback) | 200–300       |
+| Scroll-triggered reveal                 | 600–800       |
+| Staggered group reveal (per child)      | 80–150        |
+| Cinematic intro (per phase)             | 400–600       |
+| Page transition                         | 400–500       |
 
 ### Stagger Rules
 
@@ -201,6 +202,7 @@ All motion uses custom cubic-bezier curves derived from `src/config/animation.ts
 The cursor treatment is **not** the portfolio's identity. The primary memorable experience is the opening sequence (Section 2). The cursor is a subtle reward for exploration — a detail that rewards users who pay attention, without demanding attention itself.
 
 The cursor must never:
+
 - Distract from reading.
 - Draw the eye during normal browsing.
 - Feel like a feature that was designed to be noticed.
@@ -305,13 +307,13 @@ These principles govern every design decision. They are not aspirational — the
 
 ### Hard Constraints
 
-| Metric | Budget | Notes |
-|---|---|---|
-| **First Contentful Paint** | ≤ 1.5s | No JS blocks FCP. The cinematic opening runs *after* paint. |
-| **Largest Contentful Paint** | ≤ 2.0s | Hero content is static HTML rendered by the server. |
-| **Total Blocking Time** | ≤ 100ms | No long-running scroll listeners. Motion uses `transform` and `opacity` only. |
-| **Cumulative Layout Shift** | ≤ 0.05 | Animated elements use `transform`/`opacity` — no layout impact. |
-| **JavaScript bundle (initial)** | ≤ 60KB gzipped | Lenis and GSAP load after paint via `requestIdleCallback`. |
+| Metric                          | Budget         | Notes                                                                         |
+| ------------------------------- | -------------- | ----------------------------------------------------------------------------- |
+| **First Contentful Paint**      | ≤ 1.5s         | No JS blocks FCP. The cinematic opening runs _after_ paint.                   |
+| **Largest Contentful Paint**    | ≤ 2.0s         | Hero content is static HTML rendered by the server.                           |
+| **Total Blocking Time**         | ≤ 100ms        | No long-running scroll listeners. Motion uses `transform` and `opacity` only. |
+| **Cumulative Layout Shift**     | ≤ 0.05         | Animated elements use `transform`/`opacity` — no layout impact.               |
+| **JavaScript bundle (initial)** | ≤ 60KB gzipped | Lenis and GSAP load after paint via `requestIdleCallback`.                    |
 
 ### What the Experience Must Never Do
 
@@ -383,12 +385,12 @@ It should feel like opening a premium digital product.
 
 Every decision should reinforce four qualities:
 
-| Quality | Manifestation |
-|---|---|
-| **Calm** | The page never hurries, never competes, never demands. White space, slow reveals, and a quiet background create a space the user can inhabit without effort. |
-| **Precision** | Spacing is consistent to the pixel. Type is aligned to a baseline rhythm. Motion curves are mathematically defined. Nothing is approximate. |
-| **Confidence** | The hero makes a statement before introducing a person. The page trusts the user to explore — no arrows, no "scroll down" prompts, no hand-holding. |
-| **Curiosity** | The opening sequence withholds enough to make the user wonder what comes next. The cursor reveals unexpected utility on hover. The page rewards attention without demanding it. |
+| Quality        | Manifestation                                                                                                                                                                   |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Calm**       | The page never hurries, never competes, never demands. White space, slow reveals, and a quiet background create a space the user can inhabit without effort.                    |
+| **Precision**  | Spacing is consistent to the pixel. Type is aligned to a baseline rhythm. Motion curves are mathematically defined. Nothing is approximate.                                     |
+| **Confidence** | The hero makes a statement before introducing a person. The page trusts the user to explore — no arrows, no "scroll down" prompts, no hand-holding.                             |
+| **Curiosity**  | The opening sequence withholds enough to make the user wonder what comes next. The cursor reveals unexpected utility on hover. The page rewards attention without demanding it. |
 
 ### The Experience Must Never Compete for Attention
 
@@ -400,12 +402,12 @@ The opening sequence gives more to the user who watches it in full (the vertical
 
 ### The Four Pillars
 
-| Pillar | Delivered By | Measured By |
-|---|---|---|
-| **Curiosity** | The opening sequence | User completes the full 2.5s reveal without skipping |
-| **Confidence** | The typography and hierarchy | No secondary CTAs, no explanatory text, no decoration |
-| **Delight** | The signature interaction | The cursor reading ruler surprises without feeling gimmicky |
-| **Trust** | The engineering | Lighthouse scores, load speed, scroll smoothness, no layout shift |
+| Pillar         | Delivered By                 | Measured By                                                       |
+| -------------- | ---------------------------- | ----------------------------------------------------------------- |
+| **Curiosity**  | The opening sequence         | User completes the full 2.5s reveal without skipping              |
+| **Confidence** | The typography and hierarchy | No secondary CTAs, no explanatory text, no decoration             |
+| **Delight**    | The signature interaction    | The cursor reading ruler surprises without feeling gimmicky       |
+| **Trust**      | The engineering              | Lighthouse scores, load speed, scroll smoothness, no layout shift |
 
 ### What Visitors Should Remember
 
@@ -414,4 +416,4 @@ Visitors should leave remembering a **feeling** rather than a **feature**.
 - If someone remembers the animations but not the craftsmanship, the portfolio has failed.
 - If someone remembers the craftsmanship without consciously noticing the animations, the portfolio has succeeded.
 
-The ideal response is not "that was a cool website" but a quieter, more valuable reaction: *"I want to work with someone who builds things this carefully."*
+The ideal response is not "that was a cool website" but a quieter, more valuable reaction: _"I want to work with someone who builds things this carefully."_
