@@ -1,3 +1,5 @@
+import { ExperienceProvider } from "@/components/experience";
+import { Reveal } from "@/components/animations/reveal";
 import { Hero } from "@/components/sections/hero";
 import { About } from "@/components/sections/about";
 import { Work } from "@/components/sections/work";
@@ -6,12 +8,24 @@ import { Contact } from "@/components/sections/contact";
 
 export default function Home() {
   return (
-    <main id="main-content" className="min-h-svh" tabIndex={-1}>
-      <Hero />
-      <About />
-      <Work />
-      <Experiments />
-      <Contact />
-    </main>
+    <ExperienceProvider>
+      <main id="main-content" className="min-h-svh" tabIndex={-1}>
+        <Reveal distance={12}>
+          <Hero />
+        </Reveal>
+        <Reveal distance={12}>
+          <About />
+        </Reveal>
+        <Reveal distance={12}>
+          <Work />
+        </Reveal>
+        <Reveal distance={12}>
+          <Experiments />
+        </Reveal>
+        <Reveal distance={12}>
+          <Contact />
+        </Reveal>
+      </main>
+    </ExperienceProvider>
   );
 }
