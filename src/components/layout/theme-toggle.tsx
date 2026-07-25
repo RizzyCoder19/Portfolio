@@ -12,7 +12,13 @@ export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  useEffect(() => setMounted(true), []);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return <div className="h-10 w-10" aria-hidden="true" />;
+  }
 
   const currentIndex = themeOptions.indexOf(
     (theme as (typeof themeOptions)[number]) ?? "system",
@@ -25,7 +31,6 @@ export function ThemeToggle() {
   return (
     <Button
       aria-label={label}
-      disabled={!mounted}
       size="icon"
       variant="ghost"
       onClick={() => setTheme(nextTheme)}

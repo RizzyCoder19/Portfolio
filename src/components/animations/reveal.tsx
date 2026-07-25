@@ -2,13 +2,20 @@
 
 import { motion, useReducedMotion, type HTMLMotionProps } from "motion/react";
 
-import { createStagger, revealVariants } from "@/lib/motion";
+import { createRevealVariants, createStagger } from "@/lib/motion";
 
 type RevealProps = HTMLMotionProps<"div"> & {
   delay?: number;
+  blur?: boolean;
+  distance?: number;
 };
 
-export function Reveal({ delay = 0, ...props }: RevealProps) {
+export function Reveal({
+  delay = 0,
+  blur = false,
+  distance = 40,
+  ...props
+}: RevealProps) {
   const shouldReduceMotion = useReducedMotion();
 
   return (
@@ -16,7 +23,11 @@ export function Reveal({ delay = 0, ...props }: RevealProps) {
       initial="hidden"
       whileInView="visible"
       viewport={{ amount: 0.2, once: true }}
-      variants={shouldReduceMotion ? undefined : revealVariants}
+      variants={
+        shouldReduceMotion
+          ? undefined
+          : createRevealVariants({ distance, blur })
+      }
       transition={{ delay }}
       {...props}
     />
