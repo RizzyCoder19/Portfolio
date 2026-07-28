@@ -1,34 +1,67 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { cn } from "@/lib/utils";
 
+/**
+ * Portrait — supporting evidence, not the subject.
+ *
+ * This is NOT a profile picture.
+ * It's an editorial visual that anchors the right side of the spread.
+ * If removed, the layout should still feel complete.
+ *
+ * Positioned as a half-visible element that peeks from the right edge,
+ * bleeding off-screen to suggest there's more beyond the frame.
+ */
 export function AboutPortrait() {
+  const reducedMotion = useReducedMotion();
+
   return (
-    <div className="flex items-center justify-center lg:justify-end">
-      <div className="relative w-full max-w-xs sm:max-w-sm lg:max-w-md xl:max-w-lg">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ amount: 0.2, once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <Image
-            src="/images/portrait.png"
-            alt="Khan Umar portrait"
-            width={480}
-            height={640}
-            priority
-            className={cn(
-              "aspect-[3/4] w-full object-cover",
-              "rounded-xl border border-border",
-              "bg-surface",
-              "overflow-hidden",
-            )}
-          />
-        </motion.div>
+    <motion.div
+      className="relative hidden h-full w-full lg:block"
+      initial={reducedMotion ? { opacity: 1 } : { opacity: 0, x: 40 }}
+      whileInView={
+        reducedMotion
+          ? { opacity: 1 }
+          : { opacity: 1, x: 0 }
+      }
+      viewport={{ amount: 0.3, once: true }}
+      transition={{
+        duration: 1.2,
+        ease: [0.16, 1, 0.3, 1],
+        delay: 0.6,
+      }}
+    >
+      <div className="absolute inset-y-0 -right-12 w-[110%] overflow-hidden">
+        <Image
+          src="/images/portrait.png"
+          alt=""
+          fill
+          priority={false}
+          className={cn(
+            "object-cover object-left",
+            "opacity-80",
+          )}
+          sizes="40vw"
+        />
+        {/* Right edge fade — portrait bleeds into white space */}
+        <div
+          className="absolute inset-y-0 right-0 w-1/3"
+          style={{
+            background:
+              "linear-gradient(to right, transparent, var(--background))",
+          }}
+        />
+        {/* Bottom fade — portrait sinks into the scene */}
+        <div
+          className="absolute bottom-0 left-0 right-0 h-1/4"
+          style={{
+            background:
+              "linear-gradient(to top, var(--background), transparent)",
+          }}
+        />
       </div>
-    </div>
+    </motion.div>
   );
 }

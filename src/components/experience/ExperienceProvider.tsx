@@ -1,8 +1,9 @@
 "use client";
 
-import { useCallback, useState, type ReactNode } from "react";
+import { useCallback, useMemo, useState, type ReactNode } from "react";
 
 import { IntroScreen } from "./IntroScreen";
+import { ExperienceContext } from "./ExperienceContext";
 
 interface ExperienceProviderProps {
   children: ReactNode;
@@ -15,20 +16,32 @@ export function ExperienceProvider({ children }: ExperienceProviderProps) {
     setIntroComplete(true);
   }, []);
 
-  // Show intro screen first
-  if (!introComplete) {
-    return (
-      <>
-        <IntroScreen onComplete={handleIntroComplete} />
-        {/* Hidden until intro completes */}
-        <div aria-hidden="true" style={{ display: "none" }}>
-          {children}
-        </div>
-      </>
-    );
-  }
+  const contextValue = useMemo(() => ({ introComplete }), [introComplete]);
 
-  // After intro: render children directly. Hero handles its own stagger
-  // and other sections should not receive a global stagger from here.
-  return <>{children}</>;
+  return (
+    <ExperienceContext.Provider value={contextValue}>
+      {/* Intro screen — always mounted, parent fades it out via opacity.
+          The IntroScreen no longer returns null when done; it keeps rendering
+          so the opacity transition is smooth and visible. */}
+      <div
+        className="fixed inset-0 z-50"
+        style={{
+          opacity: introComplete ? 0 : 1,
+          transition: "opacity 600ms ease-out",
+          pointerEvents: introComplete ? "none" : "auto",
+        }}
+        aria-hidden={introComplete}
+      >
+        <IntroScreen onComplete={handleIntroComplete} />
+      </div>
+
+      {/*
+       * Children are always in the DOM and visible (for font/asset preloading).
+       * No display:none flicker. The intro overlay fades out on top of the hero,
+       * which is already rendered behind it.
+       */}
+      <div>{children}</div>
+    </ExperienceContext.Provider>
+  );
 }
+

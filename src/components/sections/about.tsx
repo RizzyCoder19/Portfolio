@@ -1,27 +1,32 @@
 "use client";
 
 import { Section } from "@/components/ui/section";
-import { Reveal } from "@/components/animations/reveal";
 import { AboutContent } from "./about/AboutContent";
-import { AboutHighlights } from "./about/AboutHighlights";
 import { AboutPortrait } from "./about/AboutPortrait";
 
 export function About() {
   return (
-    <Section id="about" container="default" spacing="default" aria-label="About me">
-      <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-20">
-        <div className="flex flex-col gap-12">
-          <Reveal delay={0}>
-            <AboutContent />
-          </Reveal>
-          <Reveal delay={0.15}>
-            <AboutHighlights />
-          </Reveal>
+    <Section
+      id="about"
+      container={false}
+      spacing="none"
+      className="relative min-h-svh overflow-hidden"
+      aria-label="Philosophy"
+    >
+      <div className="relative mx-auto grid min-h-svh w-full max-w-7xl grid-cols-1 gap-0 px-page py-section lg:grid-cols-12">
+        <div className="col-span-1 flex flex-col justify-center lg:col-span-7">
+          <AboutContent />
         </div>
-        <div className="flex items-center">
-          <AboutPortrait />
+        <div className="col-span-1 lg:col-span-5">
+<AboutPortrait />
         </div>
       </div>
+      <div
+        className="pointer-events-none absolute bottom-0 left-0 right-0 h-24"
+        style={{
+          background: "linear-gradient(to top, var(--background), transparent)",
+        }}
+      />
     </Section>
   );
 }

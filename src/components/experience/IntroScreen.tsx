@@ -85,22 +85,23 @@ export function IntroScreen({ onComplete }: IntroScreenProps) {
     };
   }, [shouldReduceMotion, onComplete]);
 
-  if (phase === "done") {
-    return null;
-  }
+  const isDone = phase === "done";
 
-  const beamGrown = phase !== "black";
+  const beamGrown = !isDone && phase !== "black";
   const beamVisible =
+    !isDone &&
     phase !== "beam-fade" && phase !== "text-fade" && phase !== "pause";
   const beamBright =
     phase === "beam-brighten" || phase === "line2" || phase === "hold";
   const line1Visible =
-    phase === "line1" ||
-    phase === "beam-brighten" ||
-    phase === "line2" ||
-    phase === "hold";
-  const line2Visible = phase === "line2" || phase === "hold";
-  const textHidden = phase === "text-fade" || phase === "pause";
+    !isDone &&
+    (phase === "line1" ||
+      phase === "beam-brighten" ||
+      phase === "line2" ||
+      phase === "hold");
+  const line2Visible =
+    !isDone && (phase === "line2" || phase === "hold");
+  const textHidden = isDone || phase === "text-fade" || phase === "pause";
 
   return (
     <div
@@ -138,7 +139,7 @@ export function IntroScreen({ onComplete }: IntroScreenProps) {
             opacity: textHidden
               ? 0
               : line1Visible || line2Visible
-                ? 6
+                ? 1
                 : 0,
             transition: "opacity 500ms ease-out",
           }}

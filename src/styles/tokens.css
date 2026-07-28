@@ -26,6 +26,15 @@
   --color-danger: var(--danger);
   --color-danger-foreground: var(--danger-foreground);
 
+  /* ── Signal Design Language tokens ─────────────────────────────── */
+  --color-signal-beam: var(--signal-beam);
+  --color-signal-beam-subtle: var(--signal-beam-subtle);
+  --color-signal-glow: var(--signal-glow);
+  --color-signal-pulse: var(--signal-pulse);
+  /* Scene temperature shifts */
+  --color-scene-warmth: var(--scene-warmth);
+  --color-scene-warmth-ambient: var(--scene-warmth-ambient);
+
   --radius-sm: calc(var(--radius) - 6px);
   --radius-md: calc(var(--radius) - 3px);
   --radius-lg: var(--radius);
@@ -45,6 +54,9 @@
   --text-heading: clamp(1.5rem, 2.5vw, 2.25rem);
   --text-heading--line-height: 1.08;
   --text-heading--letter-spacing: -0.035em;
+  --text-subtitle: clamp(1.125rem, 2vw, 1.5rem);
+  --text-subtitle--line-height: 1.2;
+  --text-subtitle--letter-spacing: -0.02em;
   --text-kicker: 0.6875rem;
   --text-kicker--line-height: 1.2;
   --text-kicker--letter-spacing: 0.16em;
@@ -79,6 +91,13 @@
   --warning-foreground: oklch(0.29 0.07 70);
   --danger: oklch(0.61 0.2 25);
   --danger-foreground: oklch(0.99 0.01 25);
+  /* Signal design language — light mode */
+  --signal-beam: oklch(0.515 0.22 280 / 0.35);
+  --signal-beam-subtle: oklch(0.515 0.22 280 / 0.12);
+  --signal-glow: oklch(0.515 0.22 280 / 0.08);
+  --signal-pulse: oklch(0.56 0.2 280 / 0.25);
+  --scene-warmth: oklch(0.5 0.08 60);
+  --scene-warmth-ambient: oklch(0.85 0.04 60 / 0.06);
   --shadow-elevation-1:
     0 1px 2px oklch(0.2 0.02 285 / 0.04), 0 3px 12px oklch(0.2 0.02 285 / 0.04);
   --shadow-elevation-2:
@@ -111,6 +130,13 @@
   --warning-foreground: oklch(0.24 0.06 70);
   --danger: oklch(0.69 0.18 25);
   --danger-foreground: oklch(0.25 0.04 25);
+  /* Signal design language — dark mode */
+  --signal-beam: oklch(0.71 0.17 280 / 0.4);
+  --signal-beam-subtle: oklch(0.71 0.17 280 / 0.15);
+  --signal-glow: oklch(0.71 0.17 280 / 0.1);
+  --signal-pulse: oklch(0.72 0.16 280 / 0.3);
+  --scene-warmth: oklch(0.82 0.1 60);
+  --scene-warmth-ambient: oklch(0.82 0.1 60 / 0.06);
   --shadow-elevation-1: 0 1px 2px oklch(0 0 0 / 0.2), 0 3px 12px oklch(0 0 0 / 0.12);
   --shadow-elevation-2: 0 8px 24px oklch(0 0 0 / 0.26), 0 2px 8px oklch(0 0 0 / 0.14);
   --shadow-elevation-3: 0 20px 50px oklch(0 0 0 / 0.38), 0 8px 20px oklch(0 0 0 / 0.2);
