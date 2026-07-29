@@ -1,26 +1,38 @@
-# Hero Implementation — Direction C "Asymmetric Stack"
+# Implementation Plan — Approved (Revised)
 
-## Foundation
-- [ ] 1. Update `src/content/hero.ts` — New CTA labels, content structure
-- [ ] 2. Update `src/styles/motion.css` — Replace blob keyframes with spatial anchor reveal, remove decorative blobs
+## Phase 1 — Mobile-First Responsive ✅
+- [ ] Hero mobile: stacked layout, full-width buttons, responsive type
+- [ ] About mobile: 1-col principles, portrait repositioned not hidden
+- [ ] Work mobile: single column chapters, full-width evidence blocks
+- [ ] Lab mobile: vertical card layout, full-width links
+- [ ] Contact mobile: full-width buttons, stacked links
+- [ ] Nav mobile: touch targets, full-width dropdown
 
-## Components (bottom-up)
-- [ ] 3. Rewrite `src/components/sections/hero/HeroVisual.tsx` — Spatial anchor, left column, material depth
-- [ ] 4. Rewrite `src/components/sections/hero/HeroContent.tsx` — Name with rule draw, headline kerning settle, clip-path from center
-- [ ] 5. Rewrite `src/components/sections/hero/HeroActions.tsx` — Text-link CTAs with spring underline physics
-- [ ] 6. Remove/repurpose `src/components/sections/hero/HeroBeam.tsx` — Beam is now invisible axis
-- [ ] 7. Remove `src/components/sections/hero/ScrollIndicator.tsx` — No scroll indicator needed
-- [ ] 8. Update `src/components/sections/hero/index.ts` — Updated exports
+## Phase 2 — Hero Refinement
+- [ ] Remove scroll label per blueprint
+- [ ] HeroVisual grain texture polish
+- [ ] CTA underline physics (spring-based)
+- [ ] Add About light transfer motion (HeroVisual compression → About warm glow)
+- [ ] Maintain existing asymmetric architecture
 
-## Orchestrator
-- [ ] 9. Rewrite `src/components/sections/hero/Hero.tsx` — Asymmetric layout, scroll compression, light transfer
+## Phase 3 — About Polish
+- [ ] Portrait responsive: reposition/resize/crop on mobile (not hide)
+- [ ] Ensure full portrait identity preserved at all breakpoints
 
-## About Integration
-- [ ] 10. Update `src/components/sections/about.tsx` — Receive HeroVisual light transfer
+## Phase 4 — Rename to "Craft Lab"
+- [ ] Update navigation label
+- [ ] Update section heading/eyebrow
+- [ ] Keep internal file structure unchanged
 
-## Page
-- [ ] 11. Update `src/app/page.tsx` — Remove Reveal wrappers, scene transition orchestration
+## Phase 5 — Contact Refinement
+- [ ] Centralize layout (max-w-5xl centered per blueprint)
+- [ ] Prominent primary CTA (email button)
+- [ ] Restructure links as full-width on mobile
+- [ ] Update copy to match blueprint warmth
 
-## Verify
-- [ ] 12. npm run lint, typecheck, build
-
+## Phase 6 — Product Cohesion Audit
+- [ ] Spacing consistency
+- [ ] Typography hierarchy
+- [ ] Transition rhythm
+- [ ] Responsive behavior at all breakpoints
+- [ ] Overall storytelling flow

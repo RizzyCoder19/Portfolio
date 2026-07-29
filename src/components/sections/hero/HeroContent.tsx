@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion, type Variants } from "motion/react";
 import { cn } from "@/lib/utils";
-import { heroSignature, heroHeadline } from "@/content/hero";
+import { heroSignature, heroHeadline, heroMissionLine } from "@/content/hero";
 
 /* ─── Entrance variants ───────────────────────────────────────────────────── */
 
@@ -36,19 +36,19 @@ const nameFade: Variants = {
 };
 
 /**
- * Headline entrance: clip-path from center (signal axis).
- * Reveals outward like light spreading.
+ * Headline entrance: subtle position shift while remaining visible.
+ * The hero statement should never be hidden behind animation.
  */
 const lineRevealFromCenter: Variants = {
   hidden: {
-    clipPath: "inset(0 50% 0 50%)",
-    opacity: 0,
+    opacity: 1,
+    y: 8,
   },
   visible: {
-    clipPath: "inset(0 0% 0 0%)",
     opacity: 1,
+    y: 0,
     transition: {
-      duration: 1.0,
+      duration: 0.6,
       ease: [0.16, 1, 0.3, 1],
     },
   },
@@ -67,6 +67,19 @@ const kerningSettle: Variants = {
   },
 };
 
+const missionReveal: Variants = {
+  hidden: { opacity: 0, y: 6 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.55,
+      ease: [0.16, 1, 0.3, 1],
+      delay: 0.45,
+    },
+  },
+};
+
 /** Horizontal rule growth: draws from the beam axis rightward. */
 const ruleGrowth: Variants = {
   hidden: { scaleX: 0 },
@@ -75,7 +88,7 @@ const ruleGrowth: Variants = {
     transition: {
       duration: 0.7,
       ease: [0.22, 1, 0.36, 1],
-      delay: 0.4,
+      delay: 0.55,
     },
   },
 };
@@ -112,6 +125,7 @@ export function HeroContent({ entered }: HeroContentProps) {
   const ruleVariant = reducedMotion ? instant : ruleGrowth;
   const nameVariant = reducedMotion ? instant : nameFade;
   const dashVariant = reducedMotion ? instant : ruleLeft;
+  const missionVariant = reducedMotion ? instant : missionReveal;
 
   return (
     <motion.div
@@ -122,7 +136,7 @@ export function HeroContent({ entered }: HeroContentProps) {
     >
       {/* ── Signature rule: ─── Khan Umar ─── ── */}
       <motion.div
-        className="mb-6 flex items-center gap-3"
+        className="mb-8 flex items-center gap-3 sm:mb-9 lg:mb-10"
         variants={instant}
         initial="hidden"
         animate={entered ? "visible" : "hidden"}
@@ -181,9 +195,17 @@ export function HeroContent({ entered }: HeroContentProps) {
         ))}
       </motion.h1>
 
+      {/* ── Mission line — direct, human, and product-focused. ── */}
+      <motion.p
+        className="mt-8 max-w-2xl text-base leading-7 text-muted-foreground sm:mt-10 sm:text-lg sm:leading-8 lg:mt-12"
+        variants={missionVariant}
+      >
+        {heroMissionLine}
+      </motion.p>
+
       {/* ── Horizontal rule — grows from beam axis rightward ── */}
       <motion.div
-        className="mt-6 h-px origin-left"
+        className="mt-8 h-px origin-left sm:mt-10 lg:mt-12"
         style={{
           width: "40%",
           minWidth: "6rem",

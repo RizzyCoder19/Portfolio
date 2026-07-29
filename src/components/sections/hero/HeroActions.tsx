@@ -2,45 +2,39 @@
 
 import { motion, useReducedMotion, type Variants } from "motion/react";
 import { heroCtaLabels } from "@/content/hero";
-import { cn } from "@/lib/utils";
 import { useScrollTo } from "@/utils/scroll";
+import { Button } from "@/components/ui/button";
 
 /* ─── Entrance variants ───────────────────────────────────────────────────── */
 
 const container: Variants = {
   hidden: {},
   visible: {
-    transition: { staggerChildren: 0.1 },
+    transition: { staggerChildren: 0.12, delayChildren: 0.08 },
   },
 };
 
-const ctaReveal: Variants = {
+const ctaPrimaryReveal: Variants = {
+  hidden: { opacity: 0, y: 8 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: 0.05 },
+  },
+};
+
+const ctaSecondaryReveal: Variants = {
   hidden: { opacity: 0, y: 6 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.18 },
   },
 };
 
 const instant: Variants = {
   hidden: { opacity: 1 },
   visible: { opacity: 1 },
-};
-
-/* ─── Underline spring variants ──────────────────────────────────────────── */
-
-/**
- * The underline overshoots to 105% before settling at 100% on hover.
- * On leave, it retracts with a gentle ease-in.
- * This demonstrates physics understanding — spring-based animation.
- */
-const underlineSpring = {
-  rest: { scaleX: 0 },
-  hover: {
-    scaleX: 1,
-    transition: { type: "spring" as const, stiffness: 400, damping: 30, mass: 0.8 },
-  },
 };
 
 /* ─── Component ───────────────────────────────────────────────────────────── */
@@ -52,67 +46,44 @@ interface HeroActionsProps {
 export function HeroActions({ entered }: HeroActionsProps) {
   const scrollTo = useScrollTo();
   const reducedMotion = useReducedMotion();
-  const variant = reducedMotion ? instant : ctaReveal;
+  const primaryVariant = reducedMotion ? instant : ctaPrimaryReveal;
+  const secondaryVariant = reducedMotion ? instant : ctaSecondaryReveal;
 
   return (
     <motion.div
-      className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:gap-6"
+      className="mt-8 flex flex-col items-stretch gap-4 sm:mt-10 sm:flex-row sm:items-center sm:gap-8 lg:mt-12"
       variants={container}
       initial="hidden"
       animate={entered ? "visible" : "hidden"}
     >
-      {/* ── Primary CTA — See what I've built ── */}
-      <motion.button
-        variants={variant}
-        type="button"
-        onClick={() => scrollTo("#work", { offset: 0 })}
-        className={cn(
-          "group relative inline-flex items-center gap-1.5",
-          "text-sm font-medium text-foreground",
-          "transition-colors duration-200",
-          "hover:text-primary",
-        )}
-        aria-label={`${heroCtaLabels[0]} — navigate to work`}
-      >
-        <span className="relative">
+      {/* ── Primary CTA — See the Case Study ── */}
+      <motion.div variants={primaryVariant} className="w-full sm:w-auto">
+        <Button
+          variant="primary"
+          size="lg"
+          className="hero-cta-primary group w-full min-h-11 rounded-lg px-6 font-semibold shadow-elevation-2 sm:w-auto"
+          onClick={() => scrollTo("#work", { offset: 0 })}
+          aria-label={`${heroCtaLabels[0]} — navigate to work`}
+        >
           {heroCtaLabels[0]}
-          {/* Underline — always visible at 50% opacity, full on hover */}
-          <motion.span
-            className="absolute -bottom-px left-0 h-px w-full origin-left bg-current opacity-50"
-            aria-hidden="true"
-            initial="rest"
-            whileHover="hover"
-            variants={underlineSpring}
-          />
-        </span>
-        <span className="text-muted-foreground/40" aria-hidden="true">→</span>
-      </motion.button>
+          <span className="text-primary-foreground/85 transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true">
+            →
+          </span>
+        </Button>
+      </motion.div>
 
       {/* ── Secondary CTA — Start a conversation ── */}
-      <motion.button
-        variants={variant}
-        type="button"
-        onClick={() => scrollTo("#contact", { offset: 0 })}
-        className={cn(
-          "group relative inline-flex items-center gap-1.5",
-          "text-sm font-medium text-muted-foreground",
-          "transition-colors duration-200",
-          "hover:text-primary",
-        )}
-        aria-label={`${heroCtaLabels[1]} — navigate to contact`}
-      >
-        <span className="relative">
+      <motion.div variants={secondaryVariant} className="w-full sm:w-auto">
+        <Button
+          variant="ghost"
+          size="default"
+          className="hero-cta-secondary w-full min-h-11 justify-start px-2 text-sm font-medium text-muted-foreground hover:bg-transparent hover:text-foreground sm:w-auto sm:min-h-10 sm:px-1"
+          onClick={() => scrollTo("#contact", { offset: 0 })}
+          aria-label={`${heroCtaLabels[1]} — navigate to contact`}
+        >
           {heroCtaLabels[1]}
-          {/* Underline — only appears on hover, with overshoot */}
-          <motion.span
-            className="absolute -bottom-px left-0 h-px w-full origin-left bg-current"
-            aria-hidden="true"
-            initial="rest"
-            whileHover="hover"
-            variants={underlineSpring}
-          />
-        </span>
-      </motion.button>
+        </Button>
+      </motion.div>
     </motion.div>
   );
 }

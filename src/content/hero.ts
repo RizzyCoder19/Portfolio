@@ -16,13 +16,14 @@ export const heroSignature = "Khan Umar" as const;
  */
 export const heroHeadline = ["Building software", "that feels inevitable."] as const;
 
-/**
- * CTA labels — specific, action-oriented.
- * "See what I've built" invites exploration of the Work scene.
- * "Start a conversation" invites contact — warmer than "Get in Touch."
- */
+
+/** Personal mission line — direct, human, and product-focused. */
+export const heroMissionLine =
+  "I design and engineer interfaces that users enjoy using." as const;
+
+/** CTA labels — specific, action-oriented. */
 export const heroCtaLabels: readonly [string, string] = [
-  "See what I've built",
+  "See the Case Study",
   "Start a conversation",
 ] as const;
 
