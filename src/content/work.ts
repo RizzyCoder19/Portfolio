@@ -1,22 +1,11 @@
 /**
  * Scene Three — Featured Case Study Content & Story Structure.
- *
- * Story Arc (6 Chapters):
- * 01 / Problem: Establishing Distinction in Portfolio Engineering
- * 02 / Complexity: Reconciling Aesthetic Depth with Performance Constraints
- * 03 / Design System: A Tokenized Material & Typographic Hierarchy
- * 04 / Engineering: Compositor-Only Animation & Type-Safe Architecture
- * 05 / Outcomes: Measurable Impact & System Outcomes
- * 06 / Retrospective: Looking Back — Retrospective & Future Iterations
- *
- * Special Editorial Section:
- * "Behind One Decision" — Technical deep-dive on GPU CSS vs WebGL canvas runtimes.
  */
 
 export const workTitle = "This Portfolio" as const;
 
 export const workSubtitle =
-  "An architectural case study in material UI, tokenized design systems, and compositor-only engineering." as const;
+  "An honest walkthrough of how I built this site, why I chose certain technologies, and what I learned in the process." as const;
 
 export type WorkVisualMode =
   | "problem"
@@ -41,72 +30,71 @@ export const workChapters: readonly WorkChapter[] = [
   {
     id: "problem",
     number: "01",
-    question: "What was the problem?",
-    heading: "Establishing Distinction in Portfolio Engineering",
+    question: "What was the goal?",
+    heading: "Creating a personal space to share my learning",
     content:
-      "Most developer portfolios rely on generic templates and uncalibrated components. The challenge was building an entrance and experience that communicates senior engineering judgment, visual restraint, and technical depth within 3 seconds.",
-    visualLabel: "01 / Problem Statement",
+      "I wanted a portfolio that showed my actual coding skills rather than just listing tech names on a resume. My goal was to build something simple, responsive, and clear that reflects how I approach web projects.",
+    visualLabel: "01 / The Goal",
     visualMode: "problem",
     visualTreatment: "bg-gradient-to-br from-primary/[0.04] to-transparent",
   },
   {
     id: "complexity",
     number: "02",
-    question: "Why was it difficult?",
-    heading: "Reconciling Aesthetic Depth with Performance Constraints",
+    question: "What made it tricky?",
+    heading: "Balancing visual design with clean code",
     content:
-      "Combining dark-romance atmosphere with strict 60 FPS rendering and universal accessibility required avoiding heavy WebGL runtimes. Every visual effect had to be achieved using hardware-accelerated CSS keyframes and tokenized OKLCH variables.",
-    visualLabel: "02 / System Constraints",
+      "It's easy to add heavy animation libraries or flashy effects, but I wanted to keep the site responsive on mobile devices and accessible to everyone. Learning when to stop adding code was the hardest part.",
+    visualLabel: "02 / Trade-offs",
     visualMode: "complexity",
     visualTreatment: "bg-gradient-to-bl from-primary/[0.05] via-transparent to-transparent",
   },
   {
     id: "design",
     number: "03",
-    question: "What design decisions mattered?",
-    heading: "A Tokenized Material & Typographic Hierarchy",
+    question: "What design rules helped?",
+    heading: "Setting up a consistent color and typography scale",
     content:
-      "Establishing a disciplined design system with dark romance color tokens, monospaced kickers, and 1px hairline structural dividers ensures every visual element exists for composition rather than artificial decoration.",
-    visualLabel: "03 / Token Architecture",
+      "I defined a small set of reusable CSS variables for spacing, font sizes, and colors before building components. Using OKLCH color space helped keep dark mode contrast comfortable to read.",
+    visualLabel: "03 / Color & Type",
     visualMode: "design",
     visualTreatment: "bg-gradient-to-tr from-primary/[0.04] via-transparent to-transparent",
   },
   {
     id: "engineering",
     number: "04",
-    question: "How was it engineered?",
-    heading: "Compositor-Only Animation & Type-Safe Architecture",
+    question: "How is it put together?",
+    heading: "Pre-rendered HTML with type-checked components",
     content:
-      "Built with Next.js 15, App Router, and strict TypeScript. Animations are strictly bounded to GPU-accelerated transform and opacity keyframe compositions to eliminate main-thread layout thrashing during scroll.",
-    visualLabel: "04 / Motion & Component Pipeline",
+      "Pre-rendering HTML at build time makes sure content loads instantly on first visit. Strict type checking catches props and state bugs before they reach users, while hardware-accelerated transitions give visual feedback without main-thread lag.",
+    visualLabel: "04 / Build Benefits",
     visualMode: "engineering",
     visualTreatment: "bg-gradient-to-tl from-primary/[0.05] via-transparent to-transparent",
   },
   {
     id: "outcomes",
     number: "05",
-    question: "What was the outcome?",
-    heading: "Measurable Impact & System Outcomes",
+    question: "How did it turn out?",
+    heading: "A solid, working project I'm proud of",
     content:
-      "The result is a portfolio that validates engineering capability through the user experience itself—achieving top-tier performance benchmarks while maintaining an atmospheric aesthetic.",
-    visualLabel: "05 / Verified Outcomes",
+      "Building this site helped me understand component structure, accessibility basics, and state management much better than reading tutorials alone.",
+    visualLabel: "05 / Takeaways",
     visualMode: "outcomes",
     visualTreatment: "bg-gradient-to-br from-primary/[0.06] to-transparent",
   },
   {
     id: "retrospective",
     number: "06",
-    question: "What would you improve today?",
-    heading: "Looking Back: Retrospective & Future Iterations",
+    question: "What would I improve next time?",
+    heading: "Areas I want to refine as I learn more",
     content:
-      "If building this system today, I would explore native CSS container queries for hyper-local component fluid sizing and integrate automated visual regression testing into the CI pipeline to catch sub-pixel layout shifts before deployment.",
-    visualLabel: "06 / Future Roadmaps",
+      "Looking back, I want to explore native CSS container queries for mobile layout tuning, add automated visual tests, and refactor a few components to reduce repetitive code.",
+    visualLabel: "06 / Next Steps",
     visualMode: "retrospective",
     visualTreatment: "bg-gradient-to-bl from-primary/[0.04] via-transparent to-transparent",
   },
 ] as const;
 
-/** Meaningful, grounded engineering outcomes (replacing generic stats). */
 export const workMeaningfulOutcomes: readonly {
   category: string;
   metric: string;
@@ -114,48 +102,51 @@ export const workMeaningfulOutcomes: readonly {
 }[] = [
   {
     category: "Accessibility",
-    metric: "WCAG AA Compliant",
-    detail: "Full keyboard navigation, visible focus rings, ARIA landmarks, and robust prefers-reduced-motion support.",
+    metric: "Keyboard & Screen Reader Support",
+    detail: "Included visible focus indicators, semantic HTML tags, and options for reduced motion.",
   },
   {
-    category: "Performance",
-    metric: "60 FPS Compositor Baseline",
-    detail: "98+ Lighthouse performance with zero main-thread layout shifts during dynamic scroll transitions.",
+    category: "Rendering",
+    metric: "Static Page Output",
+    detail: "Pages are pre-rendered into static HTML during build time for reliable loading.",
   },
   {
-    category: "Architecture",
-    metric: "Atomic Primitive System",
-    detail: "Decoupled component tokens preventing code duplication and providing a scalable UI foundation.",
+    category: "Component Design",
+    metric: "Reusable UI Components",
+    detail: "Separated buttons, headings, and cards into modular TypeScript files.",
   },
   {
     category: "Design System",
-    metric: "OKLCH Color Parity",
-    detail: "Single source of truth color space ensuring dark and light mode harmony without hue drift.",
+    metric: "Centralized CSS Tokens",
+    detail: "Stored all spacing scales and theme colors in CSS custom properties.",
   },
   {
-    category: "Maintainability",
-    metric: "Strict Compile-Time Safety",
-    detail: "Fully typed content models and component contracts preventing runtime state errors.",
+    category: "Code Quality",
+    metric: "Strict Type Safety",
+    detail: "Configured strict type checks across all components to catch bugs early.",
   },
 ] as const;
 
-/** "Behind One Decision" deep dive section. */
 export const workBehindOneDecision = {
-  title: "Behind One Decision: Why GPU CSS Keyframes Beat WebGL Canvas Runtimes",
-  subtitle: "A technical trade-off analysis between visual depth and runtime overhead.",
+  title: "Behind One Choice: CSS Animations vs Canvas Runtimes",
+  subtitle: "Choosing lightweight web standards over heavy 3D canvases.",
   content:
-    "Heavy WebGL canvas scenes often look impressive, but they introduce multi-megabyte bundle overhead, high GPU thermal load on mobile devices, and accessibility blind spots. By pairing CSS OKLCH color-mix gradients with hardware-composited transform animations, we achieved 60 FPS cinematic depth while preserving instant initial page load, battery efficiency, and native DOM accessibility.",
+    "While exploring 3D canvas libraries, I noticed they significantly increased file bundle sizes and battery drain on mobile phones. For this portfolio, sticking to standard CSS keyframes and subtle opacity shifts provided the right visual feel without slowing down the page.",
 } as const;
 
-/** Primary source links. */
 export const workLinks: readonly {
   label: string;
   href: string;
   primary: boolean;
 }[] = [
   {
+    label: "Explore Tabula (Flagship Project) →",
+    href: "/work/tabula",
+    primary: true,
+  },
+  {
     label: "View Source on GitHub",
     href: "https://github.com/RizzyCoder19/portfolio",
-    primary: true,
+    primary: false,
   },
 ] as const;

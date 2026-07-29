@@ -1,28 +1,28 @@
 export const experimentsContent = {
-  eyebrow: "Experiments",
-  heading: "Building through curiosity.",
+  eyebrow: "Side Projects",
+  heading: "Learning by building.",
   description:
-    "A collection of ideas, prototypes, research, and technical explorations that shape how I think and build software.",
+    "Small tools, UI ideas, and small projects I work on to experiment and practice new concepts.",
   cards: [
     {
-      title: "AI Engineering",
+      title: "AI & API Explorations",
       description:
-        "Multi-agent workflows, LLM orchestration, prompt engineering, and automation experiments.",
+        "Building simple interfaces and scripts to test LLM endpoints, prompt techniques, and API flows.",
     },
     {
-      title: "Frontend Systems",
+      title: "UI Prototypes",
       description:
-        "Premium UI architecture, animation systems, interaction design, accessibility, and performance.",
+        "Testing custom button interactions, responsive grid layouts, and keyboard focus states.",
     },
     {
-      title: "Backend Engineering",
+      title: "Full-Stack Experiments",
       description:
-        "Authentication, APIs, databases, scalable architecture, and infrastructure exploration.",
+        "Practicing API routes, basic database integration, and authentication fundamentals.",
     },
     {
-      title: "Currently Exploring",
+      title: "What I'm Learning Right Now",
       description:
-        "Next.js 15, TypeScript, Motion, GSAP, BandAI, Claude Code, OpenAI, Codex",
+        "Next.js 15, TypeScript patterns, Framer Motion transitions, and modern CSS layout features.",
     },
   ],
 } as const;

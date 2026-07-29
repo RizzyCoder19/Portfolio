@@ -1,8 +1,8 @@
 export const contactContent = {
   eyebrow: "Contact",
-  heading: "Let's build something meaningful.",
+  heading: "Let's connect.",
   description:
-    "Whether it's an opportunity, a collaboration, or simply a conversation about software, I'm always interested in connecting with people who enjoy building thoughtful products.",
+    "Whether you have feedback, a project idea, or just want to talk about frontend development, I'd love to hear from you.",
   links: [
     {
       label: "GitHub",
@@ -26,13 +26,13 @@ export const contactContent = {
     },
   ],
   availability: {
-    label: "Currently",
+    label: "Status",
     description:
-      "Open to internships, freelance opportunities, collaborations, and learning experiences.",
+      "Open for entry-level frontend roles, internships, freelance projects, and collaborations.",
   },
   closing: {
     line1: "Built with curiosity.",
-    line2: "Designed with intention.",
-    line3: "Always evolving.",
+    line2: "Iterated with care.",
+    line3: "Always learning.",
   },
 } as const;

@@ -1,5 +1,5 @@
 export const introStatement =
-  "Software isn't just built.\nIt is experienced." as const;
+  "Good software explains itself.\nI'm here to build it." as const;
 
 // — Intro cinematic sequence (~5.2s total) —
 
