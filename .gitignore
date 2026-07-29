@@ -43,3 +43,6 @@ next-env.d.ts
 
 #blueprint
 product_design_blueprint
+
+.xgrok/
+AGENTS.md
