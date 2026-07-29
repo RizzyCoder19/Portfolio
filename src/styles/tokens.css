@@ -26,11 +26,12 @@
   --color-danger: var(--danger);
   --color-danger-foreground: var(--danger-foreground);
 
-  /* ── Signal Design Language tokens ─────────────────────────────── */
+  /* ── Signal & Dark Romance Design Language tokens ─────────────── */
   --color-signal-beam: var(--signal-beam);
   --color-signal-beam-subtle: var(--signal-beam-subtle);
   --color-signal-glow: var(--signal-glow);
   --color-signal-pulse: var(--signal-pulse);
+  --color-cyber-accent: var(--cyber-accent);
   /* Scene temperature shifts */
   --color-scene-warmth: var(--scene-warmth);
   --color-scene-warmth-ambient: var(--scene-warmth-ambient);
@@ -45,25 +46,29 @@
   --shadow-elevation-2: var(--shadow-elevation-2);
   --shadow-elevation-3: var(--shadow-elevation-3);
 
-  --text-display: clamp(2.75rem, 7vw, 6.5rem);
+  --text-display: clamp(2.75rem, 6.5vw, 6rem);
   --text-display--line-height: 0.94;
   --text-display--letter-spacing: -0.065em;
-  --text-title: clamp(2rem, 4vw, 3.75rem);
+  --text-title: clamp(2rem, 4vw, 3.5rem);
   --text-title--line-height: 1;
   --text-title--letter-spacing: -0.05em;
   --text-heading: clamp(1.5rem, 2.5vw, 2.25rem);
   --text-heading--line-height: 1.08;
   --text-heading--letter-spacing: -0.035em;
-  --text-subtitle: clamp(1.125rem, 2vw, 1.5rem);
-  --text-subtitle--line-height: 1.2;
+  --text-subtitle: clamp(1.125rem, 2vw, 1.375rem);
+  --text-subtitle--line-height: 1.35;
   --text-subtitle--letter-spacing: -0.02em;
   --text-kicker: 0.6875rem;
   --text-kicker--line-height: 1.2;
-  --text-kicker--letter-spacing: 0.16em;
+  --text-kicker--letter-spacing: 0.18em;
 
   --spacing-page: clamp(1.25rem, 4vw, 4rem);
   --spacing-section: clamp(5rem, 12vw, 10rem);
   --spacing-section-tight: clamp(3.5rem, 8vw, 6rem);
+
+  /* Hero grid tokens */
+  --hero-visual-width: 38vw;
+  --hero-content-gap: clamp(2rem, 5vw, 5rem);
 }
 
 :root {
@@ -91,11 +96,12 @@
   --warning-foreground: oklch(0.29 0.07 70);
   --danger: oklch(0.61 0.2 25);
   --danger-foreground: oklch(0.99 0.01 25);
-  /* Signal design language — light mode */
+  /* Signal & Dark Romance tokens — light mode */
   --signal-beam: oklch(0.515 0.22 280 / 0.35);
   --signal-beam-subtle: oklch(0.515 0.22 280 / 0.12);
   --signal-glow: oklch(0.515 0.22 280 / 0.08);
   --signal-pulse: oklch(0.56 0.2 280 / 0.25);
+  --cyber-accent: oklch(0.55 0.22 15 / 0.3);
   --scene-warmth: oklch(0.5 0.08 60);
   --scene-warmth-ambient: oklch(0.85 0.04 60 / 0.06);
   --shadow-elevation-1:
@@ -107,22 +113,22 @@
 }
 
 .dark {
-  --canvas: oklch(0.145 0.015 285);
-  --background: oklch(0.165 0.016 285);
+  --canvas: oklch(0.12 0.012 285);
+  --background: oklch(0.13 0.014 285);
   --foreground: oklch(0.94 0.01 285);
-  --surface: oklch(0.205 0.018 285);
-  --surface-raised: oklch(0.235 0.02 285);
-  --surface-sunken: oklch(0.13 0.014 285);
+  --surface: oklch(0.16 0.016 285);
+  --surface-raised: oklch(0.19 0.018 285);
+  --surface-sunken: oklch(0.11 0.012 285);
   --primary: oklch(0.71 0.17 280);
   --primary-foreground: oklch(0.19 0.03 280);
-  --secondary: oklch(0.26 0.02 285);
+  --secondary: oklch(0.22 0.018 285);
   --secondary-foreground: oklch(0.91 0.012 285);
-  --muted: oklch(0.26 0.018 285);
-  --muted-foreground: oklch(0.7 0.02 285);
-  --accent: oklch(0.3 0.06 280);
+  --muted: oklch(0.22 0.015 285);
+  --muted-foreground: oklch(0.65 0.018 285);
+  --accent: oklch(0.26 0.04 280);
   --accent-foreground: oklch(0.89 0.05 280);
-  --border: oklch(0.31 0.018 285);
-  --input: oklch(0.31 0.018 285);
+  --border: oklch(0.25 0.015 285);
+  --input: oklch(0.25 0.015 285);
   --focus-ring: oklch(0.72 0.16 280);
   --success: oklch(0.74 0.14 154);
   --success-foreground: oklch(0.19 0.035 154);
@@ -130,14 +136,15 @@
   --warning-foreground: oklch(0.24 0.06 70);
   --danger: oklch(0.69 0.18 25);
   --danger-foreground: oklch(0.25 0.04 25);
-  /* Signal design language — dark mode */
+  /* Signal & Dark Romance tokens — dark mode */
   --signal-beam: oklch(0.71 0.17 280 / 0.4);
   --signal-beam-subtle: oklch(0.71 0.17 280 / 0.15);
   --signal-glow: oklch(0.71 0.17 280 / 0.1);
   --signal-pulse: oklch(0.72 0.16 280 / 0.3);
-  --scene-warmth: oklch(0.82 0.1 60);
-  --scene-warmth-ambient: oklch(0.82 0.1 60 / 0.06);
-  --shadow-elevation-1: 0 1px 2px oklch(0 0 0 / 0.2), 0 3px 12px oklch(0 0 0 / 0.12);
-  --shadow-elevation-2: 0 8px 24px oklch(0 0 0 / 0.26), 0 2px 8px oklch(0 0 0 / 0.14);
-  --shadow-elevation-3: 0 20px 50px oklch(0 0 0 / 0.38), 0 8px 20px oklch(0 0 0 / 0.2);
+  --cyber-accent: oklch(0.65 0.22 15 / 0.35);
+  --scene-warmth: oklch(0.55 0.06 25);
+  --scene-warmth-ambient: oklch(0.55 0.06 25 / 0.08);
+  --shadow-elevation-1: 0 1px 2px oklch(0 0 0 / 0.3), 0 3px 12px oklch(0 0 0 / 0.2);
+  --shadow-elevation-2: 0 8px 24px oklch(0 0 0 / 0.4), 0 2px 8px oklch(0 0 0 / 0.25);
+  --shadow-elevation-3: 0 20px 50px oklch(0 0 0 / 0.55), 0 8px 20px oklch(0 0 0 / 0.3);
 }

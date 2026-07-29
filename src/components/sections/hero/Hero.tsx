@@ -7,27 +7,25 @@ import { useExperience } from "@/components/experience/ExperienceContext";
 import { HeroVisual } from "./HeroVisual";
 import { HeroContent } from "./HeroContent";
 import { HeroActions } from "./HeroActions";
+import { HeroBackground } from "./HeroBackground";
 
 /**
- * Hero — Scene 1: The Asymmetric Stack.
+ * Hero — Composition 3: The Cinematic Monoline Canvas.
  *
- * Composition:
- * - Left 40%: HeroVisual (spatial anchor)
- * - Right 60%: Content stack (signature → headline → rule → CTAs)
- * - The gap between columns IS the invisible signal beam
+ * Primary Hero Principle:
+ * "The Hero should feel like stepping into a private, dark-romance architectural exhibition —
+ * where high-precision software is unveiled as a handcrafted luxury artifact rather than a digital commodity."
  *
- * Scroll behavior:
- * - HeroVisual compresses from the top (curtain lowering)
- * - Content drifts upward (parallax)
- * - Dissolve gradient at bottom blends into About
- *
- * No portrait dependency. HeroVisual accepts any children.
+ * Responsive Grid Architecture:
+ * - Desktop (>= 1024px): Asymmetric 38vw left visual column / 62vw right content column.
+ * - Mobile (< 1024px): Stacked editorial layout with unencumbered negative space.
+ * - Central 1px signal axis seam running down the column boundary.
  */
 export function Hero() {
   const { introComplete } = useExperience();
   const reducedMotion = useReducedMotion();
 
-  /* Entrance state */
+  /* Entrance orchestration */
   const [entered, setEntered] = useState(false);
   const enteredRef = useRef(false);
 
@@ -40,17 +38,18 @@ export function Hero() {
     return () => clearTimeout(id);
   }, [introComplete]);
 
-  /* ── Scroll-linked transformations ── */
+  /* Scroll-linked transformation */
   const { scrollY } = useScroll();
 
-  /* Content drifts upward */
-  const contentY = useTransform(scrollY, [0, 600], [0, -40]);
+  /* Content drifts upward gracefully */
+  const contentY = useTransform(scrollY, [0, 600], [0, -36]);
 
-  /* HeroVisual compression — MotionValue<number> 0→1 */
+  /* HeroVisual compression on scroll */
   const compressionProgress = useTransform(scrollY, [64, 600], [0, 1]);
-
-  /* Convert compressionProgress to a clip-path string MotionValue */
-  const clipPathValue = useTransform(compressionProgress, (v) => `inset(${v * 100}% 0 0 0)`);
+  const clipPathValue = useTransform(
+    compressionProgress,
+    (v) => `inset(${v * 100}% 0 0 0)`
+  );
 
   const contentStyle = reducedMotion ? {} : { y: contentY };
   const visualStyle = reducedMotion ? {} : { clipPath: clipPathValue };
@@ -58,54 +57,59 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative flex min-h-svh overflow-hidden"
+      className="relative flex min-h-svh w-full flex-col lg:flex-row overflow-hidden bg-background"
       aria-label="Introduction"
     >
-      {/* ── Left column: HeroVisual (spatial anchor) ── */}
+      {/* Ambient background atmosphere */}
+      <HeroBackground entered={entered} />
+
+      {/* ── Left Column: Craft Monolith (Desktop >= 1024px) ── */}
       <motion.div
-        className="relative w-[40vw] min-w-[320px] flex-shrink-0 overflow-hidden"
+        className="relative hidden lg:flex lg:w-[var(--hero-visual-width)] lg:flex-shrink-0 items-center justify-center overflow-hidden z-10"
         aria-hidden="true"
         style={visualStyle}
       >
         <HeroVisual entered={entered} />
       </motion.div>
 
-      {/* ── Right column: Content stack ── */}
-      <div className="relative flex min-h-svh flex-1 flex-col justify-center px-page">
-        <motion.div className="flex flex-col gap-0" style={contentStyle}>
+      {/* ── Right Column: Content Stack ── */}
+      <div className="relative flex min-h-svh flex-1 flex-col justify-center px-page py-16 lg:py-0 z-10">
+        <motion.div
+          className="flex flex-col gap-0"
+          style={contentStyle}
+        >
           <HeroContent entered={entered} />
           <HeroActions entered={entered} />
         </motion.div>
 
-        {/* ── Minimal scroll hint ── */}
+        {/* Minimal Scroll Hint Indicator */}
         <motion.div
-          className="absolute bottom-8 left-0 right-0 flex justify-center"
+          className="absolute bottom-8 left-0 right-0 flex justify-center pointer-events-none"
           initial={{ opacity: 0 }}
           animate={{ opacity: entered ? 0.35 : 0 }}
-          transition={{ duration: 0.8, delay: 1.5 }}
+          transition={{ duration: 0.8, delay: 1.4 }}
         >
-          <span className="text-kicker tracking-[0.16em] text-muted-foreground/30 uppercase">
+          <span className="text-kicker font-mono tracking-[0.2em] text-muted-foreground/40 uppercase text-[10px]">
             scroll
           </span>
         </motion.div>
       </div>
 
-      {/* ── The invisible beam glow — between columns ── */}
+      {/* ── 1px Signal Seam Axis Divider (Desktop) ── */}
       <div
-        className="beam-glow pointer-events-none absolute left-[40vw] top-0 h-full w-px -translate-x-1/2"
+        className="pointer-events-none absolute left-[var(--hero-visual-width)] top-0 hidden lg:block h-full w-px -translate-x-1/2 z-20"
         aria-hidden="true"
         style={{
           background:
-            "linear-gradient(to bottom, transparent 15%, color-mix(in oklch, var(--signal-beam) 25%, transparent) 50%, transparent 85%)",
+            "linear-gradient(to bottom, transparent 10%, color-mix(in oklch, var(--signal-beam) 30%, transparent) 40%, color-mix(in oklch, var(--cyber-accent) 25%, transparent) 75%, transparent 95%)",
         }}
       />
 
-      {/* ── Dissolve gradient at bottom ── */}
+      {/* Dissolve gradient at bottom blending into About section */}
       <div
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background to-transparent"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-background to-transparent z-20"
         aria-hidden="true"
       />
     </section>
   );
 }
-

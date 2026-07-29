@@ -9,24 +9,21 @@ interface HeroVisualProps {
 }
 
 /**
- * HeroVisual — Spatial anchor for the Asymmetric Stack composition.
+ * HeroVisual — Monolithic Craft Anchor.
  *
- * This is NOT a media container. It is a structural object that organizes
- * the hero composition through its presence alone. Even when empty, it
- * occupies the left 40% of the viewport as a defined, bounded column.
+ * Derives its visual impact entirely from composition, lighting, obsidian materials,
+ * and restraint — without any decorative text labels or artificial badges.
  *
- * Design:
- * - Full-height left column with subtle material depth
- * - Light gradient: cooler at top → warmer at bottom
- * - Faint vertical glow at the right edge (the "beam")
- * - Grain texture for tactile quality
- *
- * Children override the default. Layout remains beautiful regardless.
+ * Architectural Features:
+ * - Obsidian Dark Romance surface depth
+ * - Recessed inner ambient lighting (cool obsidian top → warm bordeaux glow at base)
+ * - Fine tactile grain overlay
+ * - Hairline signal seam accent along the right axis
  */
 export function HeroVisual({ entered, children }: HeroVisualProps) {
   return (
     <motion.div
-      className="anchor-grain relative h-full w-full overflow-hidden"
+      className="hero-grain relative h-full w-full overflow-hidden flex items-center justify-center p-4 sm:p-8"
       aria-hidden="true"
       initial={{ opacity: 0, filter: "brightness(0.3)" }}
       animate={
@@ -34,56 +31,64 @@ export function HeroVisual({ entered, children }: HeroVisualProps) {
           ? { opacity: 1, filter: "brightness(1)" }
           : { opacity: 0, filter: "brightness(0.3)" }
       }
-      transition={{ duration: 1.2, ease: "easeOut" }}
+      transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
     >
       {children ?? (
-        <>
-          {/* Core material surface */}
+        <div className="relative aspect-[4/5] w-full max-w-[360px] rounded-2xl border border-border/40 overflow-hidden shadow-elevation-3 transition-transform duration-700 hover:scale-[1.01]">
+          {/* Core obsidian material surface */}
           <div
-            className="absolute inset-0"
+            className="absolute inset-0 bg-surface-sunken"
             style={{
               background:
-                "linear-gradient(180deg, color-mix(in oklch, var(--primary) 4%, var(--surface)) 0%, color-mix(in oklch, var(--primary) 8%, var(--surface-sunken)) 100%)",
+                "linear-gradient(170deg, oklch(0.15 0.015 285) 0%, oklch(0.11 0.012 285) 60%, oklch(0.13 0.02 25) 100%)",
             }}
           />
 
-          {/* Inner shadow — recessed depth */}
+          {/* Inner shadow — architectural depth */}
           <div
-            className="absolute inset-0"
+            className="absolute inset-0 pointer-events-none"
             style={{
-              boxShadow: "inset 0 0 60px oklch(0 0 0 / 0.06)",
+              boxShadow: "inset 0 0 70px oklch(0 0 0 / 0.5)",
             }}
           />
 
-          {/* Warm light source at bottom */}
+          {/* Dark romance ambient warm light projection at base */}
           <div
-            className="absolute bottom-0 left-1/2 h-[50%] w-[80%] -translate-x-1/2 rounded-full"
+            className="absolute -bottom-10 left-1/2 h-[60%] w-[110%] -translate-x-1/2 rounded-full pointer-events-none opacity-80"
             style={{
               background:
-                "radial-gradient(ellipse at center bottom, color-mix(in oklch, var(--scene-warmth) 12%, transparent) 0%, transparent 70%)",
+                "radial-gradient(ellipse at center bottom, color-mix(in oklch, var(--scene-warmth) 18%, transparent) 0%, transparent 75%)",
             }}
           />
 
-          {/* Beam glow — faint vertical glow at right edge */}
+          {/* Subtle central signal beam highlight reflection */}
           <div
-            className="beam-glow pointer-events-none absolute right-0 top-0 h-full w-px"
+            className="absolute top-0 left-1/2 h-[70%] w-px -translate-x-1/2 pointer-events-none opacity-30"
             style={{
               background:
-                "linear-gradient(to bottom, transparent 10%, color-mix(in oklch, var(--signal-beam) 30%, transparent) 50%, transparent 90%)",
+                "linear-gradient(to bottom, transparent, var(--color-signal-beam) 40%, transparent 90%)",
             }}
           />
-        </>
+
+          {/* Razor-thin highlight line along upper edge */}
+          <div
+            className="absolute inset-x-0 top-0 h-px pointer-events-none opacity-40"
+            style={{
+              background:
+                "linear-gradient(to right, transparent, oklch(0.8 0.02 285 / 0.25) 40%, oklch(0.8 0.02 285 / 0.25) 60%, transparent)",
+            }}
+          />
+        </div>
       )}
 
-      {/* Right edge fade — blends into column gap */}
+      {/* Right edge seam gradient fade into spatial gap */}
       <div
-        className="pointer-events-none absolute right-0 top-0 h-full w-12"
+        className="pointer-events-none absolute right-0 top-0 h-full w-16"
         style={{
           background:
-            "linear-gradient(to right, transparent, color-mix(in oklch, var(--background) 60%, transparent))",
+            "linear-gradient(to right, transparent, color-mix(in oklch, var(--background) 70%, transparent))",
         }}
       />
     </motion.div>
   );
 }
-

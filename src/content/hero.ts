@@ -1,28 +1,32 @@
 /**
- * Hero scene copy — The Signal, Direction C: Asymmetric Stack.
+ * Hero scene content & copy definitions.
  *
- * The name appears as part of a structural rule (─── Khan Umar ───),
- * not as a floating headline. The statement is the hero.
- * CTAs are specific actions, not generic labels.
+ * Identity: 50% Dark Romance × 20% Editorial × 15% Apple Restraint × 10% Technical Precision × 5% Cyberpunk
+ * Primary Principle: "The Hero should feel like stepping into a private, dark-romance architectural exhibition."
  */
 
-/** The name — embedded in a structural rule, not floating. */
+/** The name signature — embedded in the editorial masthead header. */
 export const heroSignature = "Khan Umar" as const;
 
+/** The accurate role title — answers "Who is this person?" within 1 second. */
+export const heroRole = "Frontend & Design Engineer" as const;
+
 /**
- * The headline — the single most important line on the page.
- * Split across two lines. The first line is the action, the second is the promise.
- * Together they answer "what do you do?" and "why does it matter?"
+ * The statement headline — split across two editorial lines.
+ * The first line is the action, the second line is the promise.
  */
 export const heroHeadline = ["Building software", "that feels inevitable."] as const;
 
 /**
- * CTA labels — specific, action-oriented.
- * "See what I've built" invites exploration of the Work scene.
- * "Start a conversation" invites contact — warmer than "Get in Touch."
+ * Concise editorial subtitle providing contextual depth without fluff.
+ */
+export const heroSubtitle =
+  "Crafting fast, thoughtful web applications and spatial interfaces with Apple-level restraint and Vercel technical precision." as const;
+
+/**
+ * Action triggers — specific, monoline triggers.
  */
 export const heroCtaLabels: readonly [string, string] = [
   "See what I've built",
   "Start a conversation",
 ] as const;
-

@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "setup": "integrated",
+  "languages": [
+    "JavaScript/TypeScript",
+    "TypeScript"
+  ],
+  "stacks": [
+    "Node.js",
+    "TypeScript",
+    "React/Next"
+  ],
+  "markers": [
+    "package.json",
+    "tsconfig.json"
+  ],
+  "packageName": "portfolio-foundation",
+  "suggestedRun": "npm run dev",
+  "createdAt": "2026-07-29T09:44:32.068Z",
+  "tool": "xgrok"
+}
